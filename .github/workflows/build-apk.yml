@@ -1,8 +1,20 @@
+<<<<<<< HEAD
 name: Build Little Wonder World V4 APK
+=======
+name: Build Little Wonder World test APK
+>>>>>>> 72a311d334e9b13ebaaddd6be0cc5d8ae4f824b0
 on:
   workflow_dispatch:
   push:
     branches: [main]
+<<<<<<< HEAD
+=======
+    paths:
+      - 'app/**'
+      - 'releases/**'
+      - 'build-apk.sh'
+      - '.github/workflows/build-apk.yml'
+>>>>>>> 72a311d334e9b13ebaaddd6be0cc5d8ae4f824b0
 jobs:
   build:
     runs-on: ubuntu-24.04
@@ -14,16 +26,29 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
+<<<<<<< HEAD
       - name: Install Android SDK packages
         uses: android-actions/setup-android@v3
       - run: sdkmanager --install 'platforms;android-35' 'build-tools;35.0.0' 'platform-tools'
       - name: Build and sign test APK
+=======
+      - uses: android-actions/setup-android@v3
+      - name: Install Android SDK 35
+        run: sdkmanager --install 'platforms;android-35' 'build-tools;35.0.0' 'platform-tools'
+      - name: Check source exists
+        run: test -f build-apk.sh && test -f app/src/main/java/com/littlewonderworld/app/MainActivity.java && test -f releases/v2.0.0.js
+      - name: Build test APK
+>>>>>>> 72a311d334e9b13ebaaddd6be0cc5d8ae4f824b0
         env:
           LWW_ANDROID_SDK: ${{ env.ANDROID_HOME }}
         run: bash build-apk.sh v2.0.0
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
+<<<<<<< HEAD
           name: LittleWonderWorld-v2.0.0-V4-test-apk
+=======
+          name: LittleWonderWorld-v2.0.0-V4-test
+>>>>>>> 72a311d334e9b13ebaaddd6be0cc5d8ae4f824b0
           path: LittleWonderWorld-v2.0.0.apk
           if-no-files-found: error
