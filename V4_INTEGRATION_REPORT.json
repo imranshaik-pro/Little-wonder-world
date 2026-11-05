@@ -1,0 +1,68 @@
+{
+  "added": [
+    {
+      "path": "audio/animal_sounds/elephant_trumpet.mp3",
+      "bytes": 36406,
+      "sha256": "8739bc5eadeabe2d3c176d3588e94e6ce8d857abba0e65a4cfd5f0002e3199ac"
+    },
+    {
+      "path": "audio/animal_sounds/lion_roar.mp3",
+      "bytes": 94084,
+      "sha256": "60913aefd2c62002dc1bf977e25ab5bcf50c3f2ca2e605f6e33493c15d695fa4"
+    },
+    {
+      "path": "audio/animal_sounds/dog_bark.mp3",
+      "bytes": 16762,
+      "sha256": "dcbafd5e0aab642c29d9fd8ac62acd07f1a9069b9603cbd34cb48f1c0569358a"
+    },
+    {
+      "path": "videos/animals/elephant_movement.mp4",
+      "bytes": 4650561,
+      "sha256": "f3cb81e9567e98d0ec56533e65041f2395321a3aacdd3f2f4ed79cdc0ef1127d"
+    },
+    {
+      "path": "videos/animals/dog_movement.mp4",
+      "bytes": 986798,
+      "sha256": "930c70b8da7c1e83667471bf8653586b0d3f0ca2de83e70cb6fc6b378251d9a3"
+    },
+    {
+      "path": "videos/animals/cat_movement.mp4",
+      "bytes": 971645,
+      "sha256": "614ace19611b85b29cf42cad71a9bc6a5e2fffc0b1f6bcf66b5c73cdd4a0ac9a"
+    },
+    {
+      "path": "audio/animal_sounds/cow_moo.mp3",
+      "bytes": 35988,
+      "sha256": "26fedb0b759aeb34bcb0c0aeef3babf10a12bfccd5890d7a428950353b344626"
+    },
+    {
+      "path": "audio/animal_sounds/horse_neigh.mp3",
+      "bytes": 37242,
+      "sha256": "c1f5e1599650ed166cf856ac33399021e549f4cdb11ebd4004618080f2df4ede"
+    },
+    {
+      "path": "audio/animal_sounds/whale_song.mp3",
+      "bytes": 94084,
+      "sha256": "d4c075c1e9f39e628e231f91449eb9130a8ed9b660392cfb7a77dcb9ac4ce318"
+    },
+    {
+      "path": "videos/animals/cow_movement.mp4",
+      "bytes": 1040228,
+      "sha256": "da3d1a3cf9f9bdfc792e25752cc1bf2ea0abfd1a42fe33adc01284012078b94d"
+    },
+    {
+      "path": "videos/animals/horse_movement.mp4",
+      "bytes": 1980125,
+      "sha256": "1e26d249194a9d417446690e0d2cbe63c278cca8db9f460401c0054be6ddfa7d"
+    },
+    {
+      "path": "videos/animals/goat_movement.mp4",
+      "bytes": 1372790,
+      "sha256": "9035474a950fbedf0391c8b5c22f31ff27926ce7d7d7902afc9163c7cc10fd4c"
+    }
+  ],
+  "added_count": 12,
+  "apk_built": false,
+  "reason": "Android SDK platform 35/build tools 35 unavailable; network DNS blocked",
+  "build_command": "bash build-apk.sh v2.0.0"
+}

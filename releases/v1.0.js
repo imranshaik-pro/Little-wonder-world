@@ -1,0 +1,1 @@
+window.__LWW_RELEASE__={id:"v1.0",code:10,label:"Little Wonder World",worlds:["sorting","animals","memory","tracing","coloring","balloon","alphabet","numbers","stories","puzzles","music","transport","coding","nature","science","pretend","emotions","life","building","body","movement","arcade","festivals","cooking"],landed:true};
