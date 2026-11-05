@@ -27,7 +27,15 @@ jobs:
           "$SDK/cmdline-tools/latest/bin/sdkmanager" --install 'platforms;android-35' 'build-tools;35.0.0' 'platform-tools'
       - name: Build test APK
         run: bash build-apk.sh v2.0.0
+      - name: Enable KVM acceleration and report virtualization
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm || true
+          ls -l /dev/kvm || true
+          test -r /dev/kvm && test -w /dev/kvm || { echo "::error::KVM unavailable: emulator would run too slowly"; exit 1; }
       - name: Launch APK in Android emulator
+        timeout-minutes: 9
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
@@ -35,13 +43,16 @@ jobs:
           target: google_apis
           profile: pixel_2
           disable-animations: true
-          emulator-boot-timeout: 360
+          emulator-boot-timeout: 240
           emulator-options: -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect
           script: |
+            echo "EMULATOR BOOT COMPLETE: $(date -u)"
             adb install -r LittleWonderWorld-v2.0.0.apk
+            echo "APK INSTALLED: $(date -u)"
             adb logcat -c
             adb shell am start -W -n com.littlewonderworld.app.v15/com.littlewonderworld.app.MainActivity
-            sleep 12
+            echo "APP START REQUEST SENT: $(date -u)"
+            sleep 8
             adb logcat -d -b crash -v time > android-crash.log || true
             adb logcat -d -v time > android-full.log || true
             adb shell dumpsys activity activities > android-activities.txt
