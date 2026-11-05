@@ -19,9 +19,26 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-      - uses: android-actions/setup-android@v3
-      - name: Install Android SDK 35
-        run: sdkmanager --install 'platforms;android-35' 'build-tools;35.0.0' 'platform-tools'
+      - name: Locate Android SDK and install platform 35
+        shell: bash
+        run: |
+          set -euo pipefail
+          SDK="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-/usr/local/lib/android/sdk}}"
+          echo "LWW_ANDROID_SDK=$SDK" >> "$GITHUB_ENV"
+          echo "SDK path: $SDK"
+          ls -la "$SDK" || true
+          SDKMANAGER="$SDK/cmdline-tools/latest/bin/sdkmanager"
+          if [ ! -x "$SDKMANAGER" ]; then
+            SDKMANAGER="$(command -v sdkmanager || true)"
+          fi
+          if [ -z "$SDKMANAGER" ]; then
+            echo "::error::Android sdkmanager is not installed on runner"
+            exit 1
+          fi
+          yes | "$SDKMANAGER" --licenses > /dev/null || true
+          "$SDKMANAGER" --install 'platforms;android-35' 'build-tools;35.0.0' 'platform-tools'
+          test -f "$SDK/platforms/android-35/android.jar"
+          test -x "$SDK/build-tools/35.0.0/aapt"
       - name: Check required V4 sources
         run: |
           test -f build-apk.sh
@@ -29,8 +46,6 @@ jobs:
           test -f app/src/main/assets/index.html
           test -f releases/v2.0.0.js
       - name: Build and sign test APK
-        env:
-          LWW_ANDROID_SDK: ${{ env.ANDROID_HOME }}
         run: bash build-apk.sh v2.0.0
       - name: Upload test APK
         uses: actions/upload-artifact@v4
