@@ -1,0 +1,67 @@
+name: Android Emulator Launch Smoke Test
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'app/**'
+      - 'releases/**'
+      - 'build-apk.sh'
+      - '.github/workflows/android-smoke-test.yml'
+jobs:
+  smoke-test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Install Android SDK
+        run: |
+          SDK="${ANDROID_HOME:-/usr/local/lib/android/sdk}"
+          echo "LWW_ANDROID_SDK=$SDK" >> "$GITHUB_ENV"
+          "$SDK/cmdline-tools/latest/bin/sdkmanager" --install 'platforms;android-35' 'build-tools;35.0.0' 'platform-tools'
+      - name: Build test APK
+        run: bash build-apk.sh v2.0.0
+      - name: Launch APK in Android emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          arch: x86_64
+          target: google_apis
+          profile: pixel_6
+          disable-animations: true
+          emulator-options: -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect
+          script: |
+            adb install -r LittleWonderWorld-v2.0.0.apk
+            adb logcat -c
+            adb shell am start -W -n com.littlewonderworld.app.v15/com.littlewonderworld.app.MainActivity
+            sleep 12
+            adb logcat -d -b crash -v time > android-crash.log || true
+            adb logcat -d -v time > android-full.log || true
+            adb shell dumpsys activity activities > android-activities.txt
+            adb shell screencap -p /sdcard/lww-launch.png
+            adb pull /sdcard/lww-launch.png lww-launch.png
+            if grep -E 'FATAL EXCEPTION|Process: com.littlewonderworld.app.v15' android-crash.log; then
+              echo "Detected Android crash"
+              exit 1
+            fi
+            if ! adb shell pidof com.littlewonderworld.app.v15; then
+              echo "App process not running after launch"
+              exit 1
+            fi
+      - name: Upload emulator diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lww-emulator-launch-diagnostics
+          path: |
+            android-crash.log
+            android-full.log
+            android-activities.txt
+            lww-launch.png
+          if-no-files-found: warn
