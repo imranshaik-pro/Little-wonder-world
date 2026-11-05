@@ -58,14 +58,8 @@ jobs:
             adb shell dumpsys activity activities > android-activities.txt
             adb shell screencap -p /sdcard/lww-launch.png
             adb pull /sdcard/lww-launch.png lww-launch.png
-            if grep -E 'FATAL EXCEPTION|Process: com.littlewonderworld.app.v15' android-crash.log; then
-              echo "Detected Android crash"
-              exit 1
-            fi
-            if ! adb shell pidof com.littlewonderworld.app.v15; then
-              echo "App process not running after launch"
-              exit 1
-            fi
+            ! grep -E 'FATAL EXCEPTION|Process: com.littlewonderworld.app.v15' android-crash.log
+            adb shell pidof com.littlewonderworld.app.v15
       - name: Upload emulator diagnostics
         if: always()
         uses: actions/upload-artifact@v4
