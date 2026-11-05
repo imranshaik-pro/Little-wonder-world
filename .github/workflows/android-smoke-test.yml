@@ -11,7 +11,7 @@ on:
 jobs:
   smoke-test:
     runs-on: ubuntu-24.04
-    timeout-minutes: 35
+    timeout-minutes: 20
     permissions:
       contents: read
     steps:
@@ -30,11 +30,12 @@ jobs:
       - name: Launch APK in Android emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 35
+          api-level: 29
           arch: x86_64
           target: google_apis
-          profile: pixel_6
+          profile: pixel_2
           disable-animations: true
+          emulator-boot-timeout: 360
           emulator-options: -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect
           script: |
             adb install -r LittleWonderWorld-v2.0.0.apk
