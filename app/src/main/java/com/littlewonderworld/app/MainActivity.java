@@ -20,6 +20,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
     private WebView web;
     private TextToSpeech voice;
     private volatile boolean voiceReady = false;
+    private boolean pageLoaded = false;
     private ValueCallback<Uri[]> photoPickerResult;
     private static final int PHOTO_PICK_REQUEST = 413;
 
@@ -34,7 +35,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
                 View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
         getWindow().setNavigationBarColor(Color.TRANSPARENT);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
-        voice = new TextToSpeech(this, this);
+        // Initialize speech only after the UI is visible; TTS engines vary by device.
         web = new WebView(this);
         web.setBackgroundColor(Color.rgb(255, 250, 238));
         web.getSettings().setJavaScriptEnabled(true);
@@ -44,7 +45,11 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
         web.setOverScrollMode(View.OVER_SCROLL_NEVER);
         web.setVerticalScrollBarEnabled(false);
         web.setHorizontalScrollBarEnabled(false);
-        web.setWebViewClient(new WebViewClient());
+        web.setWebViewClient(new WebViewClient() {
+            @Override public void onPageFinished(WebView view, String url) {
+                pageLoaded = true;
+            }
+        });
         web.setWebChromeClient(new WebChromeClient() {
             @Override
             public boolean onShowFileChooser(WebView view, ValueCallback<Uri[]> callback,
@@ -62,6 +67,8 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
         web.addJavascriptInterface(new VoiceBridge(), "WonderNative");
         setContentView(web);
         web.loadUrl("file:///android_asset/index.html");
+        try { voice = new TextToSpeech(getApplicationContext(), this); }
+        catch (RuntimeException ignored) { voiceReady = false; }
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -76,7 +83,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
     }
     @Override
     public void onInit(int status) {
-        if (status == TextToSpeech.SUCCESS) {
+        if (status == TextToSpeech.SUCCESS && voice != null) {
             voiceReady = voice.setLanguage(Locale.US) >= TextToSpeech.LANG_AVAILABLE;
             // Prefer the best locally installed English voice: no network access needed.
             try {
@@ -114,7 +121,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
     }
     @Override
     public void onBackPressed() {
-        if (web != null) web.evaluateJavascript("window.wonderBack && window.wonderBack()", null);
+        if (web != null && pageLoaded) web.evaluateJavascript("window.wonderBack && window.wonderBack()", null);
         else super.onBackPressed();
     }
     @Override
@@ -122,7 +129,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
         // The screen may be locked while an HTML5 Audio element is looping.
         // Suspend JS media as well as native speech before Android backgrounds us.
         if (web != null) {
-            web.evaluateJavascript("window.wonderPause && window.wonderPause()", null);
+            if (pageLoaded) web.evaluateJavascript("window.wonderPause && window.wonderPause()", null);
             web.onPause();
             web.pauseTimers();
         }
@@ -135,7 +142,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
         if (web != null) {
             web.resumeTimers();
             web.onResume();
-            web.evaluateJavascript("window.wonderResume && window.wonderResume()", null);
+            if (pageLoaded) web.evaluateJavascript("window.wonderResume && window.wonderResume()", null);
         }
     }
     @Override
