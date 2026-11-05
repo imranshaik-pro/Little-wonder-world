@@ -1,0 +1,99 @@
+/* v1.4.2: playable space belongs to the child, especially on small phones. */
+.music-fullscreen{
+ width:100%;min-height:0;display:flex;flex-direction:column;align-items:stretch;
+ justify-content:stretch;gap:7px;padding:7px 12px 9px;
+ background:linear-gradient(145deg,#fef7ed,#f2eeff);
+}
+.music-fullscreen .music-surface{
+ flex:1;min-height:0;width:100%;display:flex;align-items:stretch;justify-content:center;
+}
+.music-fullscreen .piano-board{
+ width:100%;height:100%;min-height:0;max-width:none;border-width:8px;border-radius:20px;
+ box-shadow:0 5px 0 #b2a7ba;
+}
+.music-fullscreen .piano-whites{height:100%;}
+.music-fullscreen .piano-white{
+ border-width:2px;border-bottom-width:10px;border-radius:0 0 13px 13px;
+ padding-bottom:clamp(8px,2.5vh,25px);font-size:clamp(19px,2.6vw,35px);
+}
+.music-fullscreen .piano-black{width:8.4%;height:63%;border-radius:0 0 12px 12px;font-size:clamp(15px,1.6vw,24px);}
+.music-fullscreen .xylo-frame{
+ width:100%;height:100%;min-height:0;max-width:none;
+ border-width:7px;border-radius:24px;padding:9px 15px;
+ box-shadow:0 6px 0 #caa27d;
+}
+.music-fullscreen .xylo-bars{width:100%;height:100%;gap:clamp(4px,.75vw,12px);}
+.music-fullscreen .xylo-bar{
+ border-radius:18px;border-width:4px;font-size:clamp(21px,2.7vw,43px);
+ box-shadow:inset 0 -8px #00000015,0 5px 0 #63464055;
+}
+.music-fullscreen .xylo-rails{inset:14px 7px;border-width:7px;}
+.music-fullscreen .drum-kit{width:100%;height:100%;gap:12px;}
+.music-fullscreen .music-keys{height:100%;min-height:0;width:100%;gap:8px;}
+.music-fullscreen .music-keys button{font-size:clamp(24px,3vw,42px);}
+.music-fullscreen .music-toolbar{
+ height:clamp(45px,8vh,72px);width:100%;flex:none;display:flex;
+ justify-content:space-between;align-items:center;gap:12px;
+}
+.music-fullscreen .music-live-count{font-size:clamp(14px,1.6vw,23px);font-weight:900;color:#65538a;}
+.music-fullscreen .music-finish{
+ min-height:42px;min-width:170px;background:#c9b5ff;border:3px solid white;
+ border-radius:17px;padding:8px 18px;font-weight:1000;font-size:clamp(14px,1.6vw,21px);
+ box-shadow:0 3px 0 #9880c7;
+}
+.music-fullscreen .music-finish:disabled{background:#e7e0ef;color:#9c93a6;box-shadow:none;}
+
+/* Review finding: six-option animal questions were squeezing two rows under
+   a large hero, sometimes clipping labels on short landscape phones. */
+.animal-playfield.has-many-options{justify-content:space-between;gap:4px;}
+.animal-playfield.has-many-options .animal-hero-wrap{height:34%;min-height:0;}
+.animal-playfield.has-many-options .sound-hero{width:clamp(58px,9vw,125px);height:clamp(58px,9vw,125px);font-size:clamp(40px,6vw,82px);}
+.animal-playfield.has-many-options .play-question{font-size:clamp(17px,2vw,28px);margin:2px 0;}
+.animal-playfield.has-many-options .choice-grid{height:48%;max-height:none;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;}
+.animal-playfield.has-many-options .choice-card{min-height:0;padding:3px 2px;gap:1px;}
+.animal-playfield.has-many-options .choice-icon{font-size:clamp(25px,4.3vh,54px);}
+.animal-playfield.has-many-options .choice-label{font-size:clamp(11px,1.3vw,17px);}
+
+/* New relaxed, finger-friendly game; no countdown or penalties for missed taps. */
+.bubble-pop-playfield{
+ width:100%;min-height:0;display:flex;flex-direction:column;justify-content:flex-start;
+ gap:5px;padding:7px 13px 11px;background:linear-gradient(150deg,#cceefd,#f0f7ff 48%,#fff5e2);
+}
+.bubble-game-top{width:100%;height:clamp(33px,6vh,55px);flex:none;display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.bubble-game-top strong{font-size:clamp(18px,2.1vw,32px);color:#5b539e;white-space:nowrap;}
+.bubble-game-top span{font-size:clamp(12px,1.5vw,22px);font-weight:900;color:#617797;text-align:right;}
+.bubble-game-grid{
+ width:100%;flex:1;min-height:0;display:grid;
+ grid-template-columns:repeat(var(--bubble-cols),minmax(0,1fr));
+ grid-template-rows:repeat(3,minmax(0,1fr));gap:5px;place-items:center;
+ border:3px dashed #d2e5f7;border-radius:24px;
+ background:radial-gradient(circle at 20% 10%,#fff9 0 5%,transparent 19%),
+  radial-gradient(circle at 83% 82%,#fffc 0 5%,transparent 20%);
+}
+.pop-bubble{
+ width:clamp(54px,17vh,165px);height:clamp(54px,17vh,165px);
+ max-width:82%;max-height:87%;min-width:0;min-height:0;position:relative;
+ border-radius:50%;border:4px solid #ffffffcc;
+ background:radial-gradient(circle at 27% 23%,#ffffffdd 0 10%,#ffffff65 12% 21%,transparent 38%),
+  radial-gradient(circle at 66% 78%,#fff9 0 4%,transparent 28%),
+  radial-gradient(circle at 35% 34%,#ffffff55,var(--bubble-color) 74%);
+ box-shadow:inset -10px -13px 20px #5e7ca925,inset 8px 8px 20px #ffffffc7,0 7px 13px #6f87b044;
+ animation:gentleBubble 2.8s ease-in-out infinite;animation-delay:var(--bubble-delay);
+}
+.pop-bubble::before{content:"";position:absolute;top:13%;left:22%;width:25%;height:17%;background:#fffa;border-radius:50%;transform:rotate(-36deg);}
+.pop-bubble:active{transform:scale(.82);filter:brightness(1.2);}
+.bubble-burst{color:#e9b85e;text-shadow:0 0 13px #fff;animation:bubbleSparkle .6s ease-out both;font-size:clamp(35px,7vh,95px);font-weight:900;}
+@keyframes gentleBubble{0%,100%{transform:translateY(2px)}50%{transform:translateY(-5px)}}
+@keyframes bubbleSparkle{0%{opacity:0;transform:scale(.5) rotate(-20deg)}50%{opacity:1;transform:scale(1.15)}100%{opacity:.6;transform:scale(1)}}
+.reduced-motion .pop-bubble,.reduced-motion .bubble-burst{animation:none;}
+
+@media(max-height:520px){
+ .music-fullscreen{gap:5px;padding:5px 8px 6px;}
+ .music-fullscreen .music-toolbar{height:43px;gap:6px;}
+ .music-fullscreen .music-finish{min-height:36px;min-width:145px;padding:5px 8px;}
+ .music-fullscreen .piano-board,.music-fullscreen .xylo-frame{border-width:5px;}
+ .music-fullscreen .xylo-frame{padding:5px 8px;}
+ .bubble-pop-playfield{padding:5px 7px;}
+ .bubble-game-top{height:30px;}
+ .bubble-game-grid{gap:3px;border-width:2px;}
+}

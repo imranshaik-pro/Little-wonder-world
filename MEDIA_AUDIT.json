@@ -1,0 +1,1838 @@
+{
+  "batches": [
+    {
+      "batch": 1,
+      "files": 37,
+      "zip_integrity": true
+    },
+    {
+      "batch": 2,
+      "files": 45,
+      "zip_integrity": true
+    },
+    {
+      "batch": 3,
+      "files": 36,
+      "zip_integrity": true
+    },
+    {
+      "batch": 4,
+      "files": 42,
+      "zip_integrity": true
+    },
+    {
+      "batch": 5,
+      "files": 51,
+      "zip_integrity": true
+    }
+  ],
+  "counts": {
+    "animals": 64,
+    "objects": 71,
+    "lessons": 16
+  },
+  "videos": 16,
+  "audio": 16,
+  "missing_references": [
+    [
+      "animals",
+      "wild_elephant",
+      "audio_filename",
+      "audio/animal_sounds/elephant_trumpet.mp3"
+    ],
+    [
+      "animals",
+      "wild_elephant",
+      "video_filename",
+      "videos/animals/elephant_movement.mp4"
+    ],
+    [
+      "animals",
+      "wild_lion",
+      "audio_filename",
+      "audio/animal_sounds/lion_roar.mp3"
+    ],
+    [
+      "animals",
+      "wild_lion",
+      "video_filename",
+      "videos/animals/lion_movement.mp4"
+    ],
+    [
+      "animals",
+      "wild_tiger",
+      "audio_filename",
+      "audio/animal_sounds/tiger_chuff_roar.mp3"
+    ],
+    [
+      "animals",
+      "wild_tiger",
+      "video_filename",
+      "videos/animals/tiger_movement.mp4"
+    ],
+    [
+      "animals",
+      "domestic_dog",
+      "audio_filename",
+      "audio/animal_sounds/dog_bark.mp3"
+    ],
+    [
+      "animals",
+      "domestic_dog",
+      "video_filename",
+      "videos/animals/dog_movement.mp4"
+    ],
+    [
+      "animals",
+      "domestic_cat",
+      "audio_filename",
+      "audio/animal_sounds/cat_meow.mp3"
+    ],
+    [
+      "animals",
+      "domestic_cat",
+      "video_filename",
+      "videos/animals/cat_movement.mp4"
+    ],
+    [
+      "animals",
+      "domestic_cow",
+      "audio_filename",
+      "audio/animal_sounds/cow_moo.mp3"
+    ],
+    [
+      "animals",
+      "domestic_cow",
+      "video_filename",
+      "videos/animals/cow_movement.mp4"
+    ],
+    [
+      "animals",
+      "domestic_buffalo",
+      "image_filename",
+      "animals/domestic/buffalo.webp"
+    ],
+    [
+      "animals",
+      "domestic_buffalo",
+      "audio_filename",
+      "audio/animal_sounds/buffalo_grunt.mp3"
+    ],
+    [
+      "animals",
+      "domestic_buffalo",
+      "video_filename",
+      "videos/animals/buffalo_movement.mp4"
+    ],
+    [
+      "animals",
+      "domestic_goat",
+      "image_filename",
+      "animals/domestic/goat.webp"
+    ],
+    [
+      "animals",
+      "domestic_goat",
+      "audio_filename",
+      "audio/animal_sounds/goat_bleat.mp3"
+    ],
+    [
+      "animals",
+      "domestic_goat",
+      "video_filename",
+      "videos/animals/goat_movement.mp4"
+    ],
+    [
+      "animals",
+      "domestic_sheep",
+      "image_filename",
+      "animals/domestic/sheep.webp"
+    ],
+    [
+      "animals",
+      "domestic_sheep",
+      "audio_filename",
+      "audio/animal_sounds/sheep_baa.mp3"
+    ],
+    [
+      "animals",
+      "domestic_sheep",
+      "video_filename",
+      "videos/animals/sheep_movement.mp4"
+    ],
+    [
+      "animals",
+      "domestic_horse",
+      "image_filename",
+      "animals/domestic/horse.webp"
+    ],
+    [
+      "animals",
+      "domestic_horse",
+      "audio_filename",
+      "audio/animal_sounds/horse_neigh.mp3"
+    ],
+    [
+      "animals",
+      "domestic_horse",
+      "video_filename",
+      "videos/animals/horse_movement.mp4"
+    ],
+    [
+      "animals",
+      "domestic_donkey",
+      "image_filename",
+      "animals/domestic/donkey.webp"
+    ],
+    [
+      "animals",
+      "domestic_donkey",
+      "audio_filename",
+      "audio/animal_sounds/donkey_bray.mp3"
+    ],
+    [
+      "animals",
+      "domestic_donkey",
+      "video_filename",
+      "videos/animals/donkey_movement.mp4"
+    ],
+    [
+      "animals",
+      "domestic_pig",
+      "image_filename",
+      "animals/domestic/pig.webp"
+    ],
+    [
+      "animals",
+      "domestic_pig",
+      "audio_filename",
+      "audio/animal_sounds/pig_oink.mp3"
+    ],
+    [
+      "animals",
+      "domestic_pig",
+      "video_filename",
+      "videos/animals/pig_movement.mp4"
+    ],
+    [
+      "animals",
+      "domestic_rabbit",
+      "image_filename",
+      "animals/domestic/rabbit.webp"
+    ],
+    [
+      "animals",
+      "domestic_rabbit",
+      "audio_filename",
+      "audio/animal_sounds/rabbit_thump.mp3"
+    ],
+    [
+      "animals",
+      "domestic_rabbit",
+      "video_filename",
+      "videos/animals/rabbit_movement.mp4"
+    ],
+    [
+      "animals",
+      "domestic_camel",
+      "image_filename",
+      "animals/domestic/camel.webp"
+    ],
+    [
+      "animals",
+      "domestic_camel",
+      "audio_filename",
+      "audio/animal_sounds/camel_grunt.mp3"
+    ],
+    [
+      "animals",
+      "domestic_camel",
+      "video_filename",
+      "videos/animals/camel_movement.mp4"
+    ],
+    [
+      "animals",
+      "wild_giraffe",
+      "audio_filename",
+      "audio/animal_sounds/giraffe_hum.mp3"
+    ],
+    [
+      "animals",
+      "wild_giraffe",
+      "video_filename",
+      "videos/animals/giraffe_movement.mp4"
+    ],
+    [
+      "animals",
+      "wild_leopard",
+      "image_filename",
+      "animals/wild/leopard.webp"
+    ],
+    [
+      "animals",
+      "wild_leopard",
+      "audio_filename",
+      "audio/animal_sounds/leopard_growl.mp3"
+    ],
+    [
+      "animals",
+      "wild_leopard",
+      "video_filename",
+      "videos/animals/leopard_movement.mp4"
+    ],
+    [
+      "animals",
+      "wild_cheetah",
+      "image_filename",
+      "animals/wild/cheetah.webp"
+    ],
+    [
+      "animals",
+      "wild_cheetah",
+      "audio_filename",
+      "audio/animal_sounds/cheetah_chirp.mp3"
+    ],
+    [
+      "animals",
+      "wild_cheetah",
+      "video_filename",
+      "videos/animals/cheetah_movement.mp4"
+    ],
+    [
+      "animals",
+      "wild_bear",
+      "image_filename",
+      "animals/wild/bear.webp"
+    ],
+    [
+      "animals",
+      "wild_bear",
+      "audio_filename",
+      "audio/animal_sounds/bear_groan.mp3"
+    ],
+    [
+      "animals",
+      "wild_bear",
+      "video_filename",
+      "videos/animals/bear_movement.mp4"
+    ],
+    [
+      "animals",
+      "wild_deer",
+      "image_filename",
+      "animals/wild/deer.webp"
+    ],
+    [
+      "animals",
+      "wild_deer",
+      "audio_filename",
+      "audio/animal_sounds/deer_bleat.mp3"
+    ],
+    [
+      "animals",
+      "wild_deer",
+      "video_filename",
+      "videos/animals/deer_movement.mp4"
+    ],
+    [
+      "animals",
+      "wild_zebra",
+      "image_filename",
+      "animals/wild/zebra.webp"
+    ],
+    [
+      "animals",
+      "wild_zebra",
+      "audio_filename",
+      "audio/animal_sounds/zebra_bray.mp3"
+    ],
+    [
+      "animals",
+      "wild_zebra",
+      "video_filename",
+      "videos/animals/zebra_movement.mp4"
+    ],
+    [
+      "animals",
+      "wild_monkey",
+      "image_filename",
+      "animals/wild/monkey.webp"
+    ],
+    [
+      "animals",
+      "wild_monkey",
+      "audio_filename",
+      "audio/animal_sounds/monkey_chatter.mp3"
+    ],
+    [
+      "animals",
+      "wild_monkey",
+      "video_filename",
+      "videos/animals/monkey_movement.mp4"
+    ],
+    [
+      "animals",
+      "wild_gorilla",
+      "image_filename",
+      "animals/wild/gorilla.webp"
+    ],
+    [
+      "animals",
+      "wild_gorilla",
+      "audio_filename",
+      "audio/animal_sounds/gorilla_grunt.mp3"
+    ],
+    [
+      "animals",
+      "wild_gorilla",
+      "video_filename",
+      "videos/animals/gorilla_movement.mp4"
+    ],
+    [
+      "animals",
+      "wild_rhinoceros",
+      "image_filename",
+      "animals/wild/rhinoceros.webp"
+    ],
+    [
+      "animals",
+      "wild_rhinoceros",
+      "audio_filename",
+      "audio/animal_sounds/rhinoceros_snort.mp3"
+    ],
+    [
+      "animals",
+      "wild_rhinoceros",
+      "video_filename",
+      "videos/animals/rhinoceros_movement.mp4"
+    ],
+    [
+      "animals",
+      "wild_hippopotamus",
+      "image_filename",
+      "animals/wild/hippopotamus.webp"
+    ],
+    [
+      "animals",
+      "wild_hippopotamus",
+      "audio_filename",
+      "audio/animal_sounds/hippopotamus_honk.mp3"
+    ],
+    [
+      "animals",
+      "wild_hippopotamus",
+      "video_filename",
+      "videos/animals/hippopotamus_movement.mp4"
+    ],
+    [
+      "animals",
+      "wild_fox",
+      "image_filename",
+      "animals/wild/fox.webp"
+    ],
+    [
+      "animals",
+      "wild_fox",
+      "audio_filename",
+      "audio/animal_sounds/fox_bark.mp3"
+    ],
+    [
+      "animals",
+      "wild_fox",
+      "video_filename",
+      "videos/animals/fox_movement.mp4"
+    ],
+    [
+      "animals",
+      "wild_wolf",
+      "image_filename",
+      "animals/wild/wolf.webp"
+    ],
+    [
+      "animals",
+      "wild_wolf",
+      "audio_filename",
+      "audio/animal_sounds/wolf_howl.mp3"
+    ],
+    [
+      "animals",
+      "wild_wolf",
+      "video_filename",
+      "videos/animals/wolf_movement.mp4"
+    ],
+    [
+      "animals",
+      "wild_kangaroo",
+      "image_filename",
+      "animals/wild/kangaroo.webp"
+    ],
+    [
+      "animals",
+      "wild_kangaroo",
+      "audio_filename",
+      "audio/animal_sounds/kangaroo_chuff.mp3"
+    ],
+    [
+      "animals",
+      "wild_kangaroo",
+      "video_filename",
+      "videos/animals/kangaroo_movement.mp4"
+    ],
+    [
+      "animals",
+      "wild_panda",
+      "image_filename",
+      "animals/wild/panda.webp"
+    ],
+    [
+      "animals",
+      "wild_panda",
+      "audio_filename",
+      "audio/animal_sounds/panda_bleat.mp3"
+    ],
+    [
+      "animals",
+      "wild_panda",
+      "video_filename",
+      "videos/animals/panda_movement.mp4"
+    ],
+    [
+      "animals",
+      "bird_peacock",
+      "audio_filename",
+      "audio/animal_sounds/peacock_call.mp3"
+    ],
+    [
+      "animals",
+      "bird_peacock",
+      "video_filename",
+      "videos/animals/peacock_movement.mp4"
+    ],
+    [
+      "animals",
+      "bird_parrot",
+      "image_filename",
+      "animals/birds/parrot.webp"
+    ],
+    [
+      "animals",
+      "bird_parrot",
+      "audio_filename",
+      "audio/animal_sounds/parrot_squawk.mp3"
+    ],
+    [
+      "animals",
+      "bird_parrot",
+      "video_filename",
+      "videos/animals/parrot_movement.mp4"
+    ],
+    [
+      "animals",
+      "bird_crow",
+      "image_filename",
+      "animals/birds/crow.webp"
+    ],
+    [
+      "animals",
+      "bird_crow",
+      "audio_filename",
+      "audio/animal_sounds/crow_caw.mp3"
+    ],
+    [
+      "animals",
+      "bird_crow",
+      "video_filename",
+      "videos/animals/crow_movement.mp4"
+    ],
+    [
+      "animals",
+      "bird_sparrow",
+      "image_filename",
+      "animals/birds/sparrow.webp"
+    ],
+    [
+      "animals",
+      "bird_sparrow",
+      "audio_filename",
+      "audio/animal_sounds/sparrow_chirp.mp3"
+    ],
+    [
+      "animals",
+      "bird_sparrow",
+      "video_filename",
+      "videos/animals/sparrow_movement.mp4"
+    ],
+    [
+      "animals",
+      "bird_pigeon",
+      "image_filename",
+      "animals/birds/pigeon.webp"
+    ],
+    [
+      "animals",
+      "bird_pigeon",
+      "audio_filename",
+      "audio/animal_sounds/pigeon_coo.mp3"
+    ],
+    [
+      "animals",
+      "bird_pigeon",
+      "video_filename",
+      "videos/animals/pigeon_movement.mp4"
+    ],
+    [
+      "animals",
+      "bird_eagle",
+      "image_filename",
+      "animals/birds/eagle.webp"
+    ],
+    [
+      "animals",
+      "bird_eagle",
+      "audio_filename",
+      "audio/animal_sounds/eagle_screech.mp3"
+    ],
+    [
+      "animals",
+      "bird_eagle",
+      "video_filename",
+      "videos/animals/eagle_movement.mp4"
+    ],
+    [
+      "animals",
+      "bird_owl",
+      "image_filename",
+      "animals/birds/owl.webp"
+    ],
+    [
+      "animals",
+      "bird_owl",
+      "audio_filename",
+      "audio/animal_sounds/owl_hoot.mp3"
+    ],
+    [
+      "animals",
+      "bird_owl",
+      "video_filename",
+      "videos/animals/owl_movement.mp4"
+    ],
+    [
+      "animals",
+      "bird_duck",
+      "image_filename",
+      "animals/birds/duck.webp"
+    ],
+    [
+      "animals",
+      "bird_duck",
+      "audio_filename",
+      "audio/animal_sounds/duck_quack.mp3"
+    ],
+    [
+      "animals",
+      "bird_duck",
+      "video_filename",
+      "videos/animals/duck_movement.mp4"
+    ],
+    [
+      "animals",
+      "bird_hen",
+      "image_filename",
+      "animals/birds/hen.webp"
+    ],
+    [
+      "animals",
+      "bird_hen",
+      "audio_filename",
+      "audio/animal_sounds/hen_cluck.mp3"
+    ],
+    [
+      "animals",
+      "bird_hen",
+      "video_filename",
+      "videos/animals/hen_movement.mp4"
+    ],
+    [
+      "animals",
+      "bird_rooster",
+      "image_filename",
+      "animals/birds/rooster.webp"
+    ],
+    [
+      "animals",
+      "bird_rooster",
+      "audio_filename",
+      "audio/animal_sounds/rooster_crow.mp3"
+    ],
+    [
+      "animals",
+      "bird_rooster",
+      "video_filename",
+      "videos/animals/rooster_movement.mp4"
+    ],
+    [
+      "animals",
+      "bird_penguin",
+      "image_filename",
+      "animals/birds/penguin.webp"
+    ],
+    [
+      "animals",
+      "bird_penguin",
+      "audio_filename",
+      "audio/animal_sounds/penguin_call.mp3"
+    ],
+    [
+      "animals",
+      "bird_penguin",
+      "video_filename",
+      "videos/animals/penguin_movement.mp4"
+    ],
+    [
+      "animals",
+      "bird_flamingo",
+      "image_filename",
+      "animals/birds/flamingo.webp"
+    ],
+    [
+      "animals",
+      "bird_flamingo",
+      "audio_filename",
+      "audio/animal_sounds/flamingo_honk.mp3"
+    ],
+    [
+      "animals",
+      "bird_flamingo",
+      "video_filename",
+      "videos/animals/flamingo_movement.mp4"
+    ],
+    [
+      "animals",
+      "bird_ostrich",
+      "image_filename",
+      "animals/birds/ostrich.webp"
+    ],
+    [
+      "animals",
+      "bird_ostrich",
+      "audio_filename",
+      "audio/animal_sounds/ostrich_boom.mp3"
+    ],
+    [
+      "animals",
+      "bird_ostrich",
+      "video_filename",
+      "videos/animals/ostrich_movement.mp4"
+    ],
+    [
+      "animals",
+      "aquatic_dolphin",
+      "audio_filename",
+      "audio/animal_sounds/dolphin_click.mp3"
+    ],
+    [
+      "animals",
+      "aquatic_dolphin",
+      "video_filename",
+      "videos/animals/dolphin_movement.mp4"
+    ],
+    [
+      "animals",
+      "aquatic_whale",
+      "image_filename",
+      "animals/aquatic/whale.webp"
+    ],
+    [
+      "animals",
+      "aquatic_whale",
+      "audio_filename",
+      "audio/animal_sounds/whale_song.mp3"
+    ],
+    [
+      "animals",
+      "aquatic_whale",
+      "video_filename",
+      "videos/animals/whale_movement.mp4"
+    ],
+    [
+      "animals",
+      "aquatic_shark",
+      "image_filename",
+      "animals/aquatic/shark.webp"
+    ],
+    [
+      "animals",
+      "aquatic_shark",
+      "audio_filename",
+      "audio/animal_sounds/shark_water_glide.mp3"
+    ],
+    [
+      "animals",
+      "aquatic_shark",
+      "video_filename",
+      "videos/animals/shark_movement.mp4"
+    ],
+    [
+      "animals",
+      "aquatic_octopus",
+      "image_filename",
+      "animals/aquatic/octopus.webp"
+    ],
+    [
+      "animals",
+      "aquatic_octopus",
+      "audio_filename",
+      "audio/animal_sounds/octopus_bubble.mp3"
+    ],
+    [
+      "animals",
+      "aquatic_octopus",
+      "video_filename",
+      "videos/animals/octopus_movement.mp4"
+    ],
+    [
+      "animals",
+      "aquatic_sea_turtle",
+      "image_filename",
+      "animals/aquatic/sea_turtle.webp"
+    ],
+    [
+      "animals",
+      "aquatic_sea_turtle",
+      "audio_filename",
+      "audio/animal_sounds/sea_turtle_swim.mp3"
+    ],
+    [
+      "animals",
+      "aquatic_sea_turtle",
+      "video_filename",
+      "videos/animals/sea_turtle_movement.mp4"
+    ],
+    [
+      "animals",
+      "aquatic_crab",
+      "image_filename",
+      "animals/aquatic/crab.webp"
+    ],
+    [
+      "animals",
+      "aquatic_crab",
+      "audio_filename",
+      "audio/animal_sounds/crab_click.mp3"
+    ],
+    [
+      "animals",
+      "aquatic_crab",
+      "video_filename",
+      "videos/animals/crab_movement.mp4"
+    ],
+    [
+      "animals",
+      "aquatic_jellyfish",
+      "image_filename",
+      "animals/aquatic/jellyfish.webp"
+    ],
+    [
+      "animals",
+      "aquatic_jellyfish",
+      "audio_filename",
+      "audio/animal_sounds/jellyfish_pulse.mp3"
+    ],
+    [
+      "animals",
+      "aquatic_jellyfish",
+      "video_filename",
+      "videos/animals/jellyfish_movement.mp4"
+    ],
+    [
+      "animals",
+      "aquatic_seahorse",
+      "image_filename",
+      "animals/aquatic/seahorse.webp"
+    ],
+    [
+      "animals",
+      "aquatic_seahorse",
+      "audio_filename",
+      "audio/animal_sounds/seahorse_click.mp3"
+    ],
+    [
+      "animals",
+      "aquatic_seahorse",
+      "video_filename",
+      "videos/animals/seahorse_movement.mp4"
+    ],
+    [
+      "animals",
+      "aquatic_starfish",
+      "image_filename",
+      "animals/aquatic/starfish.webp"
+    ],
+    [
+      "animals",
+      "aquatic_starfish",
+      "audio_filename",
+      "audio/animal_sounds/starfish_tide.mp3"
+    ],
+    [
+      "animals",
+      "aquatic_starfish",
+      "video_filename",
+      "videos/animals/starfish_movement.mp4"
+    ],
+    [
+      "animals",
+      "insect_butterfly",
+      "audio_filename",
+      "audio/animal_sounds/butterfly_flutter.mp3"
+    ],
+    [
+      "animals",
+      "insect_butterfly",
+      "video_filename",
+      "videos/animals/butterfly_movement.mp4"
+    ],
+    [
+      "animals",
+      "insect_honeybee",
+      "image_filename",
+      "animals/insects/honeybee.webp"
+    ],
+    [
+      "animals",
+      "insect_honeybee",
+      "audio_filename",
+      "audio/animal_sounds/honeybee_buzz.mp3"
+    ],
+    [
+      "animals",
+      "insect_honeybee",
+      "video_filename",
+      "videos/animals/honeybee_movement.mp4"
+    ],
+    [
+      "animals",
+      "insect_ant",
+      "image_filename",
+      "animals/insects/ant.webp"
+    ],
+    [
+      "animals",
+      "insect_ant",
+      "audio_filename",
+      "audio/animal_sounds/ant_march.mp3"
+    ],
+    [
+      "animals",
+      "insect_ant",
+      "video_filename",
+      "videos/animals/ant_movement.mp4"
+    ],
+    [
+      "animals",
+      "insect_dragonfly",
+      "image_filename",
+      "animals/insects/dragonfly.webp"
+    ],
+    [
+      "animals",
+      "insect_dragonfly",
+      "audio_filename",
+      "audio/animal_sounds/dragonfly_whirr.mp3"
+    ],
+    [
+      "animals",
+      "insect_dragonfly",
+      "video_filename",
+      "videos/animals/dragonfly_movement.mp4"
+    ],
+    [
+      "animals",
+      "insect_grasshopper",
+      "image_filename",
+      "animals/insects/grasshopper.webp"
+    ],
+    [
+      "animals",
+      "insect_grasshopper",
+      "audio_filename",
+      "audio/animal_sounds/grasshopper_chirp.mp3"
+    ],
+    [
+      "animals",
+      "insect_grasshopper",
+      "video_filename",
+      "videos/animals/grasshopper_movement.mp4"
+    ],
+    [
+      "animals",
+      "insect_ladybug",
+      "image_filename",
+      "animals/insects/ladybug.webp"
+    ],
+    [
+      "animals",
+      "insect_ladybug",
+      "audio_filename",
+      "audio/animal_sounds/ladybug_wing.mp3"
+    ],
+    [
+      "animals",
+      "insect_ladybug",
+      "video_filename",
+      "videos/animals/ladybug_movement.mp4"
+    ],
+    [
+      "animals",
+      "insect_spider",
+      "image_filename",
+      "animals/insects/spider.webp"
+    ],
+    [
+      "animals",
+      "insect_spider",
+      "audio_filename",
+      "audio/animal_sounds/spider_web.mp3"
+    ],
+    [
+      "animals",
+      "insect_spider",
+      "video_filename",
+      "videos/animals/spider_movement.mp4"
+    ],
+    [
+      "animals",
+      "insect_snail",
+      "image_filename",
+      "animals/insects/snail.webp"
+    ],
+    [
+      "animals",
+      "insect_snail",
+      "audio_filename",
+      "audio/animal_sounds/snail_glide.mp3"
+    ],
+    [
+      "animals",
+      "insect_snail",
+      "video_filename",
+      "videos/animals/snail_movement.mp4"
+    ],
+    [
+      "animals",
+      "reptile_frog",
+      "audio_filename",
+      "audio/animal_sounds/frog_croak.mp3"
+    ],
+    [
+      "animals",
+      "reptile_frog",
+      "video_filename",
+      "videos/animals/frog_movement.mp4"
+    ],
+    [
+      "animals",
+      "reptile_crocodile",
+      "image_filename",
+      "animals/reptiles/crocodile.webp"
+    ],
+    [
+      "animals",
+      "reptile_crocodile",
+      "audio_filename",
+      "audio/animal_sounds/crocodile_bellow.mp3"
+    ],
+    [
+      "animals",
+      "reptile_crocodile",
+      "video_filename",
+      "videos/animals/crocodile_movement.mp4"
+    ],
+    [
+      "animals",
+      "reptile_snake",
+      "image_filename",
+      "animals/reptiles/snake.webp"
+    ],
+    [
+      "animals",
+      "reptile_snake",
+      "audio_filename",
+      "audio/animal_sounds/snake_hiss.mp3"
+    ],
+    [
+      "animals",
+      "reptile_snake",
+      "video_filename",
+      "videos/animals/snake_movement.mp4"
+    ],
+    [
+      "animals",
+      "reptile_lizard",
+      "image_filename",
+      "animals/reptiles/lizard.webp"
+    ],
+    [
+      "animals",
+      "reptile_lizard",
+      "audio_filename",
+      "audio/animal_sounds/lizard_rustle.mp3"
+    ],
+    [
+      "animals",
+      "reptile_lizard",
+      "video_filename",
+      "videos/animals/lizard_movement.mp4"
+    ],
+    [
+      "animals",
+      "reptile_chameleon",
+      "image_filename",
+      "animals/reptiles/chameleon.webp"
+    ],
+    [
+      "animals",
+      "reptile_chameleon",
+      "audio_filename",
+      "audio/animal_sounds/chameleon_puff.mp3"
+    ],
+    [
+      "animals",
+      "reptile_chameleon",
+      "video_filename",
+      "videos/animals/chameleon_movement.mp4"
+    ],
+    [
+      "animals",
+      "reptile_tortoise",
+      "image_filename",
+      "animals/reptiles/tortoise.webp"
+    ],
+    [
+      "animals",
+      "reptile_tortoise",
+      "audio_filename",
+      "audio/animal_sounds/tortoise_step.mp3"
+    ],
+    [
+      "animals",
+      "reptile_tortoise",
+      "video_filename",
+      "videos/animals/tortoise_movement.mp4"
+    ],
+    [
+      "objects",
+      "fruit_orange",
+      "image_filename",
+      "objects/fruits/orange.webp"
+    ],
+    [
+      "objects",
+      "fruit_grapes",
+      "image_filename",
+      "objects/fruits/grapes.webp"
+    ],
+    [
+      "objects",
+      "fruit_watermelon",
+      "image_filename",
+      "objects/fruits/watermelon.webp"
+    ],
+    [
+      "objects",
+      "fruit_pineapple",
+      "image_filename",
+      "objects/fruits/pineapple.webp"
+    ],
+    [
+      "objects",
+      "fruit_strawberry",
+      "image_filename",
+      "objects/fruits/strawberry.webp"
+    ],
+    [
+      "objects",
+      "fruit_guava",
+      "image_filename",
+      "objects/fruits/guava.webp"
+    ],
+    [
+      "objects",
+      "fruit_papaya",
+      "image_filename",
+      "objects/fruits/papaya.webp"
+    ],
+    [
+      "objects",
+      "fruit_pomegranate",
+      "image_filename",
+      "objects/fruits/pomegranate.webp"
+    ],
+    [
+      "objects",
+      "fruit_coconut",
+      "image_filename",
+      "objects/fruits/coconut.webp"
+    ],
+    [
+      "objects",
+      "veg_potato",
+      "image_filename",
+      "objects/vegetables/potato.webp"
+    ],
+    [
+      "objects",
+      "veg_tomato",
+      "image_filename",
+      "objects/vegetables/tomato.webp"
+    ],
+    [
+      "objects",
+      "veg_onion",
+      "image_filename",
+      "objects/vegetables/onion.webp"
+    ],
+    [
+      "objects",
+      "veg_brinjal",
+      "image_filename",
+      "objects/vegetables/brinjal.webp"
+    ],
+    [
+      "objects",
+      "veg_cabbage",
+      "image_filename",
+      "objects/vegetables/cabbage.webp"
+    ],
+    [
+      "objects",
+      "veg_cauliflower",
+      "image_filename",
+      "objects/vegetables/cauliflower.webp"
+    ],
+    [
+      "objects",
+      "veg_pumpkin",
+      "image_filename",
+      "objects/vegetables/pumpkin.webp"
+    ],
+    [
+      "objects",
+      "veg_cucumber",
+      "image_filename",
+      "objects/vegetables/cucumber.webp"
+    ],
+    [
+      "objects",
+      "veg_peas",
+      "image_filename",
+      "objects/vegetables/peas.webp"
+    ],
+    [
+      "objects",
+      "veg_beetroot",
+      "image_filename",
+      "objects/vegetables/beetroot.webp"
+    ],
+    [
+      "objects",
+      "vehicle_aeroplane",
+      "image_filename",
+      "objects/vehicles/aeroplane.webp"
+    ],
+    [
+      "objects",
+      "vehicle_helicopter",
+      "image_filename",
+      "objects/vehicles/helicopter.webp"
+    ],
+    [
+      "objects",
+      "vehicle_bicycle",
+      "image_filename",
+      "objects/vehicles/bicycle.webp"
+    ],
+    [
+      "objects",
+      "vehicle_motorcycle",
+      "image_filename",
+      "objects/vehicles/motorcycle.webp"
+    ],
+    [
+      "objects",
+      "vehicle_tractor",
+      "image_filename",
+      "objects/vehicles/tractor.webp"
+    ],
+    [
+      "objects",
+      "vehicle_truck",
+      "image_filename",
+      "objects/vehicles/truck.webp"
+    ],
+    [
+      "objects",
+      "vehicle_boat",
+      "image_filename",
+      "objects/vehicles/boat.webp"
+    ],
+    [
+      "objects",
+      "vehicle_ship",
+      "image_filename",
+      "objects/vehicles/ship.webp"
+    ],
+    [
+      "objects",
+      "vehicle_ambulance",
+      "image_filename",
+      "objects/vehicles/ambulance.webp"
+    ],
+    [
+      "objects",
+      "vehicle_fire_engine",
+      "image_filename",
+      "objects/vehicles/fire_engine.webp"
+    ],
+    [
+      "objects",
+      "everyday_book",
+      "image_filename",
+      "objects/everyday/book.webp"
+    ],
+    [
+      "objects",
+      "everyday_pencil",
+      "image_filename",
+      "objects/everyday/pencil.webp"
+    ],
+    [
+      "objects",
+      "everyday_chair",
+      "image_filename",
+      "objects/everyday/chair.webp"
+    ],
+    [
+      "objects",
+      "everyday_table",
+      "image_filename",
+      "objects/everyday/table.webp"
+    ],
+    [
+      "objects",
+      "everyday_clock",
+      "image_filename",
+      "objects/everyday/clock.webp"
+    ],
+    [
+      "objects",
+      "everyday_umbrella",
+      "image_filename",
+      "objects/everyday/umbrella.webp"
+    ],
+    [
+      "objects",
+      "everyday_shoes",
+      "image_filename",
+      "objects/everyday/shoes.webp"
+    ],
+    [
+      "objects",
+      "everyday_bag",
+      "image_filename",
+      "objects/everyday/bag.webp"
+    ],
+    [
+      "objects",
+      "everyday_bottle",
+      "image_filename",
+      "objects/everyday/bottle.webp"
+    ],
+    [
+      "objects",
+      "everyday_cup",
+      "image_filename",
+      "objects/everyday/cup.webp"
+    ],
+    [
+      "objects",
+      "everyday_spoon",
+      "image_filename",
+      "objects/everyday/spoon.webp"
+    ],
+    [
+      "objects",
+      "everyday_toothbrush",
+      "image_filename",
+      "objects/everyday/toothbrush.webp"
+    ],
+    [
+      "objects",
+      "everyday_bed",
+      "image_filename",
+      "objects/everyday/bed.webp"
+    ],
+    [
+      "objects",
+      "nature_sun",
+      "image_filename",
+      "objects/nature/sun.webp"
+    ],
+    [
+      "objects",
+      "nature_moon",
+      "image_filename",
+      "objects/nature/moon.webp"
+    ],
+    [
+      "objects",
+      "nature_stars",
+      "image_filename",
+      "objects/nature/stars.webp"
+    ],
+    [
+      "objects",
+      "nature_cloud",
+      "image_filename",
+      "objects/nature/cloud.webp"
+    ],
+    [
+      "objects",
+      "nature_tree",
+      "image_filename",
+      "objects/nature/tree.webp"
+    ],
+    [
+      "objects",
+      "nature_flower",
+      "image_filename",
+      "objects/nature/flower.webp"
+    ],
+    [
+      "objects",
+      "nature_mountain",
+      "image_filename",
+      "objects/nature/mountain.webp"
+    ],
+    [
+      "objects",
+      "nature_river",
+      "image_filename",
+      "objects/nature/river.webp"
+    ],
+    [
+      "objects",
+      "nature_waterfall",
+      "image_filename",
+      "objects/nature/waterfall.webp"
+    ],
+    [
+      "objects",
+      "nature_ocean",
+      "image_filename",
+      "objects/nature/ocean.webp"
+    ]
+  ],
+  "media_checks": [
+    {
+      "file": "videos/good_habits/brushing_teeth_lesson.mp4",
+      "ok": true,
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac"
+        }
+      ],
+      "duration": "15.000000"
+    },
+    {
+      "file": "videos/good_habits/road_safety_for_children_lesson.mp4",
+      "ok": true,
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac"
+        }
+      ],
+      "duration": "15.000000"
+    },
+    {
+      "file": "videos/good_habits/washing_hands_lesson.mp4",
+      "ok": true,
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac"
+        }
+      ],
+      "duration": "15.000000"
+    },
+    {
+      "file": "videos/animal_lessons/wild_and_domestic_animals_lesson.mp4",
+      "ok": true,
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac"
+        }
+      ],
+      "duration": "25.000000"
+    },
+    {
+      "file": "videos/animal_lessons/birds_and_their_sounds_lesson.mp4",
+      "ok": true,
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac"
+        }
+      ],
+      "duration": "15.000000"
+    },
+    {
+      "file": "videos/animal_lessons/animals_and_babies_lesson.mp4",
+      "ok": true,
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac"
+        }
+      ],
+      "duration": "15.000000"
+    },
+    {
+      "file": "videos/animal_lessons/wild_animals_safari_lesson.mp4",
+      "ok": true,
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac"
+        }
+      ],
+      "duration": "15.000000"
+    },
+    {
+      "file": "videos/animal_lessons/farm_animals_lesson.mp4",
+      "ok": true,
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac"
+        }
+      ],
+      "duration": "15.000000"
+    },
+    {
+      "file": "videos/numbers/counting_objects_1_to_10_lesson.mp4",
+      "ok": true,
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac"
+        }
+      ],
+      "duration": "15.000000"
+    },
+    {
+      "file": "videos/science/solar_system_intro_lesson.mp4",
+      "ok": true,
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac"
+        }
+      ],
+      "duration": "15.000000"
+    },
+    {
+      "file": "videos/science/day_and_night_lesson.mp4",
+      "ok": true,
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac"
+        }
+      ],
+      "duration": "15.000000"
+    },
+    {
+      "file": "videos/science/weather_and_seasons_lesson.mp4",
+      "ok": true,
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac"
+        }
+      ],
+      "duration": "15.000000"
+    },
+    {
+      "file": "videos/object_lessons/fruits_and_colors_lesson.mp4",
+      "ok": true,
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac"
+        }
+      ],
+      "duration": "15.000000"
+    },
+    {
+      "file": "videos/object_lessons/vegetables_healthy_food_lesson.mp4",
+      "ok": true,
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac"
+        }
+      ],
+      "duration": "15.000000"
+    },
+    {
+      "file": "videos/object_lessons/shapes_around_us_lesson.mp4",
+      "ok": true,
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac"
+        }
+      ],
+      "duration": "15.000000"
+    },
+    {
+      "file": "videos/object_lessons/vehicles_and_transportation_lesson.mp4",
+      "ok": true,
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac"
+        }
+      ],
+      "duration": "15.000000"
+    },
+    {
+      "file": "audio/narration/animals_and_babies_lesson_en.mp3",
+      "ok": true,
+      "streams": [
+        {
+          "codec_name": "mp3"
+        }
+      ],
+      "duration": "15.046531"
+    },
+    {
+      "file": "audio/narration/solar_system_intro_lesson_en.mp3",
+      "ok": true,
+      "streams": [
+        {
+          "codec_name": "mp3"
+        }
+      ],
+      "duration": "15.046531"
+    },
+    {
+      "file": "audio/narration/brushing_teeth_lesson_en.mp3",
+      "ok": true,
+      "streams": [
+        {
+          "codec_name": "mp3"
+        }
+      ],
+      "duration": "15.046531"
+    },
+    {
+      "file": "audio/narration/wild_and_domestic_animals_lesson_en.mp3",
+      "ok": true,
+      "streams": [
+        {
+          "codec_name": "mp3"
+        }
+      ],
+      "duration": "25.051429"
+    },
+    {
+      "file": "audio/narration/fruits_and_colors_lesson_en.mp3",
+      "ok": true,
+      "streams": [
+        {
+          "codec_name": "mp3"
+        }
+      ],
+      "duration": "15.046531"
+    },
+    {
+      "file": "audio/narration/counting_objects_1_to_10_lesson_en.mp3",
+      "ok": true,
+      "streams": [
+        {
+          "codec_name": "mp3"
+        }
+      ],
+      "duration": "15.046531"
+    },
+    {
+      "file": "audio/narration/shapes_around_us_lesson_en.mp3",
+      "ok": true,
+      "streams": [
+        {
+          "codec_name": "mp3"
+        }
+      ],
+      "duration": "15.046531"
+    },
+    {
+      "file": "audio/narration/washing_hands_lesson_en.mp3",
+      "ok": true,
+      "streams": [
+        {
+          "codec_name": "mp3"
+        }
+      ],
+      "duration": "15.046531"
+    },
+    {
+      "file": "audio/narration/wild_animals_safari_lesson_en.mp3",
+      "ok": true,
+      "streams": [
+        {
+          "codec_name": "mp3"
+        }
+      ],
+      "duration": "15.046531"
+    },
+    {
+      "file": "audio/narration/road_safety_for_children_lesson_en.mp3",
+      "ok": true,
+      "streams": [
+        {
+          "codec_name": "mp3"
+        }
+      ],
+      "duration": "15.046531"
+    },
+    {
+      "file": "audio/narration/vegetables_healthy_food_lesson_en.mp3",
+      "ok": true,
+      "streams": [
+        {
+          "codec_name": "mp3"
+        }
+      ],
+      "duration": "15.046531"
+    },
+    {
+      "file": "audio/narration/vehicles_and_transportation_lesson_en.mp3",
+      "ok": true,
+      "streams": [
+        {
+          "codec_name": "mp3"
+        }
+      ],
+      "duration": "15.046531"
+    },
+    {
+      "file": "audio/narration/birds_and_their_sounds_lesson_en.mp3",
+      "ok": true,
+      "streams": [
+        {
+          "codec_name": "mp3"
+        }
+      ],
+      "duration": "15.046531"
+    },
+    {
+      "file": "audio/narration/weather_and_seasons_lesson_en.mp3",
+      "ok": true,
+      "streams": [
+        {
+          "codec_name": "mp3"
+        }
+      ],
+      "duration": "15.046531"
+    },
+    {
+      "file": "audio/narration/farm_animals_lesson_en.mp3",
+      "ok": true,
+      "streams": [
+        {
+          "codec_name": "mp3"
+        }
+      ],
+      "duration": "15.046531"
+    },
+    {
+      "file": "audio/narration/day_and_night_lesson_en.mp3",
+      "ok": true,
+      "streams": [
+        {
+          "codec_name": "mp3"
+        }
+      ],
+      "duration": "15.046531"
+    }
+  ]
+}

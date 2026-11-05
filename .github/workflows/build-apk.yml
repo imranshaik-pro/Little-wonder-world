@@ -1,0 +1,29 @@
+name: Build Little Wonder World V4 APK
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Install Android SDK packages
+        uses: android-actions/setup-android@v3
+      - run: sdkmanager --install 'platforms;android-35' 'build-tools;35.0.0' 'platform-tools'
+      - name: Build and sign test APK
+        env:
+          LWW_ANDROID_SDK: ${{ env.ANDROID_HOME }}
+        run: bash build-apk.sh v2.0.0
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: LittleWonderWorld-v2.0.0-V4-test-apk
+          path: LittleWonderWorld-v2.0.0.apk
+          if-no-files-found: error

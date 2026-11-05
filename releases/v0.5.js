@@ -1,0 +1,1 @@
+window.__LWW_RELEASE__={id:"v0.5",code:5,label:"Learning Lands",worlds:["sorting","animals","memory","tracing","coloring","balloon","alphabet","numbers","stories","puzzles","music","transport"],landed:true};

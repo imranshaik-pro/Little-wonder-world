@@ -1,0 +1,18 @@
+asset_id,file_path,format,dimensions,original_size_kb,optimized_size_kb,savings_pct,target_device_memory_mb
+elephant,animals/wild/elephant.webp,WebP,1024x1024,1023.9,298.3,70.9%,4.0
+lion,animals/wild/lion.webp,WebP,1024x1024,903.3,224.9,75.1%,4.0
+tiger,animals/wild/tiger.webp,WebP,1024x1024,1073.3,331.9,69.1%,4.0
+dog,animals/domestic/dog.webp,WebP,1024x1024,918.5,238.8,74.0%,4.0
+cat,animals/domestic/cat.webp,WebP,1024x1024,768.3,148.9,80.6%,4.0
+apple,objects/fruits/apple.webp,WebP,1024x1024,432.1,74.8,82.7%,4.0
+banana,objects/fruits/banana.webp,WebP,1024x1024,376.3,16.5,95.6%,4.0
+mango,objects/fruits/mango.webp,WebP,1024x1024,383.4,38.1,90.1%,4.0
+bus,objects/vehicles/bus.webp,WebP,1024x1024,404.2,58.3,85.6%,4.0
+car,objects/vehicles/car.webp,WebP,1024x1024,451.6,48.7,89.2%,4.0
+thumb,thumbnails/wild_and_domestic_animals_thumb.webp,WebP,1280x720,987.1,247.4,74.9%,3.5
+shape_circle,objects/shapes/circle.svg,SVG,500x500 (vector),0.12,0.12,0.0% (Vector),0.1
+shape_square,objects/shapes/square.svg,SVG,500x500 (vector),0.13,0.13,0.0% (Vector),0.1
+shape_triangle,objects/shapes/triangle.svg,SVG,500x500 (vector),0.12,0.12,0.0% (Vector),0.1
+shape_star,objects/shapes/star.svg,SVG,500x500 (vector),0.18,0.18,0.0% (Vector),0.1
+shape_heart,objects/shapes/heart.svg,SVG,500x500 (vector),0.24,0.24,0.0% (Vector),0.1
+lesson_wild_and_domestic_pilot,videos/animal_lessons/wild_and_domestic_animals_lesson.mp4,MP4 (H.264/AAC),1280x720 (25s),12500.0 (Uncompressed Prores/Raw estimate),3164.5,74.1%,12.0 (Video buffer)

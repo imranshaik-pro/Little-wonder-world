@@ -1,0 +1,142 @@
+/* v1.4 — play-first landscape layout. The activity owns the screen. */
+.content{padding:0 14px 10px}
+.game-shell{width:100%;height:100%;flex-direction:column;gap:7px;padding:0 2px 5px}
+.mission{width:100%;min-width:0;height:clamp(58px,8vh,78px);flex:none;display:grid;
+ grid-template-columns:clamp(48px,5.3vw,65px) minmax(0,1fr) auto auto;
+ grid-template-rows:1fr 1fr;column-gap:13px;row-gap:0;align-items:center;
+ text-align:left;padding:4px 13px;border-radius:20px;background:linear-gradient(95deg,#fff8e6,#ffffff)}
+.mission .buddy-mission{grid-column:1;grid-row:1/3;width:clamp(43px,4.5vw,59px);height:clamp(43px,4.5vw,59px)}
+.mission h2{grid-column:2;grid-row:1;margin:0;min-width:0;font-size:clamp(18px,2.1vw,28px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mission p{grid-column:2;grid-row:2;margin:0;font-size:clamp(12px,1.18vw,16px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mission .dots,.mission .small-progress{grid-column:3;grid-row:1/3;align-self:center}
+.mission .dots b{width:13px;height:13px}
+.mission>.bubble-btn{grid-column:4;grid-row:1/3;font-size:clamp(12px,1.35vw,18px);white-space:nowrap;min-height:43px;background:#e8f7ff}
+.playfield{flex:1;min-height:0;width:100%;padding:9px;border-radius:27px}
+.play-question{font-size:clamp(19px,2.65vw,38px);margin:3px 0 8px}
+.choice-grid{gap:10px}
+.choice-card{border-radius:21px;min-height:0;min-width:0}
+.choice-card .choice-icon{font-size:clamp(49px,8vh,110px)}
+.choice-card .choice-label{font-size:clamp(14px,1.65vw,23px)}
+
+/* Modes have the same compact intro treatment: no quarter-screen empty panel. */
+.modes-layout{flex-direction:column;gap:9px}
+.modes-intro{width:100%;height:clamp(65px,11vh,91px);min-height:0;flex:none;display:flex;flex-direction:row;
+ justify-content:flex-start;gap:14px;text-align:left;padding:6px 20px;border-radius:22px}
+.modes-intro .big-emoji{font-size:clamp(40px,6vw,65px)}
+.modes-intro h2{font-size:clamp(19px,2.5vw,32px);margin:0}
+.modes-intro p{margin:0;opacity:.7}
+.mode-pages{margin:0 0 0 auto}
+.mode-grid{width:100%;flex:1;min-height:0;gap:9px}
+.mode-card{border-radius:21px;gap:12px}
+.mode-card .mode-emoji{font-size:clamp(44px,6vw,82px)}
+.mode-card .mode-text{font-size:clamp(17px,2vw,28px)}
+
+/* True letter faces: no generic ABC textbook inside answers. */
+.choice-card.letter-choice{background:linear-gradient(145deg,#fff5dc,#ffe4ac);border-width:5px}
+.choice-card.letter-choice:nth-child(2n){background:linear-gradient(145deg,#e0f9eb,#bff0df)}
+.choice-card.letter-choice:nth-child(3n){background:linear-gradient(145deg,#f7e8ff,#e5d4fd)}
+.letter-choice .choice-icon{font-family:"Trebuchet MS",Arial,sans-serif;color:#5a4a9d;
+ font-size:clamp(76px,14vh,184px);font-weight:1000;line-height:1;filter:drop-shadow(0 3px 0 #ffffff)}
+.playfield:has(.letter-choice) .choice-grid{height:47%;max-height:52%;align-items:stretch}
+.playfield:has(.letter-choice) .focus-item{font-size:clamp(84px,21vh,210px)}
+.playfield:has(.letter-choice) .play-question{font-size:clamp(25px,3.2vw,44px)}
+
+/* Big tracing canvas and independently reachable controls. */
+.tracing-playfield{justify-content:space-between;gap:6px;padding:6px 10px}
+.trace-pad{width:100%;height:calc(100% - 61px);min-height:0;flex:1;border-width:4px;
+ border-radius:25px;background:radial-gradient(circle at 50% 50%,#fffcf1,#f8f2ff)}
+.trace-letter{font-family:"Trebuchet MS",Arial,sans-serif;font-size:clamp(148px,57vh,640px);
+ line-height:.84;letter-spacing:-.08em;color:#ece1f5;-webkit-text-stroke:clamp(3px,.5vw,7px) #bda2de}
+.shape-trace .trace-letter{font-size:clamp(158px,58vh,680px);line-height:.9;letter-spacing:0}
+.trace-pad canvas{cursor:crosshair}
+.trace-actions{height:51px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;
+ gap:10px;margin:0;width:100%}
+.trace-actions button{min-height:44px;min-width:100px;padding:7px 15px;font-size:clamp(13px,1.5vw,19px)}
+.trace-actions #traceNext{background:#9ce4b9;color:#334f44;min-width:155px}
+.trace-actions #traceNext:disabled{background:#f6efec;color:#8e8285}
+.trace-progress{height:17px;width:min(13vw,175px);border-radius:50px;background:#e4d9f5;
+ box-shadow:inset 0 2px 5px #b2a0d5;overflow:hidden;flex-shrink:1}
+.trace-progress span{display:block;width:0;height:100%;border-radius:50px;background:linear-gradient(90deg,#f5c46a,#a5db9e);transition:width .12s}
+#traceHint{font-size:clamp(12px,1.28vw,17px);font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* Real footage fills the card; the animal is the hero, not a small icon. */
+.flashcard-field{padding:8px 12px;gap:8px}
+.flashcard-top{height:45px;flex-shrink:0}
+.flashcard-filter button{min-height:41px;font-size:clamp(13px,1.65vw,21px);padding:7px 15px}
+.flashcard-main{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,.9fr);gap:16px;
+ width:100%;flex:1;min-height:0;align-items:stretch}
+.flashcard-illustration{max-width:none;width:100%;height:100%;min-height:0;overflow:hidden;
+ border-radius:28px;border:5px solid #fff;background:linear-gradient(145deg,#ffe9b9,#e2f1dc)}
+.flashcard-illustration>span:not(.film-stamp){font-size:clamp(130px,31vh,330px)}
+.flashcard-illustration.has-film{background:#1f3b3a}
+.flash-video{display:block;width:100%;height:100%;margin:0;object-fit:cover;position:absolute;inset:0;border:0;border-radius:0}
+.flash-video.portrait-film{object-fit:contain}
+.flashcard-illustration .film-stamp{position:absolute;left:14px;bottom:13px;z-index:2;background:#fff9e8ed;border:2px solid white;
+ border-radius:18px;padding:7px 13px;font-weight:1000;font-size:clamp(12px,1.4vw,18px);color:#60536e}
+.flashcard-caption{height:100%;min-width:0;max-width:none;display:flex;justify-content:center;
+ flex-direction:column;align-items:center;text-align:center;padding:8px 4px}
+.flashcard-caption h2{font-size:clamp(37px,5.7vw,89px);max-width:100%;overflow-wrap:anywhere}
+.flashcard-caption p{font-size:clamp(16px,2.3vw,31px)}
+.film-note{margin-top:16px;border-radius:19px;background:#e1f6e8;color:#4e7059;padding:9px 15px;
+ font-size:clamp(13px,1.5vw,20px);font-weight:900}
+.flashcard-actions{height:clamp(53px,8.5vh,81px);gap:12px}
+.flashcard-actions button{font-size:clamp(16px,2vw,28px)}
+.flashcard-illustration .animal-video-replay{right:12px;top:12px;font-size:clamp(12px,1.35vw,17px);padding:7px 13px}
+.animal-playfield{gap:5px}
+.animal-hero-wrap{height:57%;min-height:0;gap:13px}
+.animal-hero-wrap .animal-film{height:100%;width:min(78%,900px);max-width:none;border-radius:25px}
+.animal-film video{object-fit:contain;background:#284b4d}
+.animal-hero-wrap .sound-hero{width:clamp(88px,13vw,170px);height:clamp(88px,13vw,170px);
+ font-size:clamp(60px,9vw,130px)}
+.animal-video-replay{z-index:3;right:12px;top:11px;min-height:37px;min-width:80px;font-size:clamp(12px,1.4vw,18px)}
+.animal-playfield .choice-grid{height:31%;max-height:none;align-items:stretch}
+.animal-playfield .play-question{margin:1px 0}
+
+/* v1.4.1 restoration: encyclopedia cards are readable without entering the films filter. */
+.restored-cards .flashcard-main{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:12px}
+.restored-cards .flashcard-illustration{height:100%;background:#f6f0df}
+.restored-cards .flash-real-photo{width:100%;height:100%;object-fit:contain;display:block;background:#e7eee4;border-radius:23px}
+.restored-cards .animal-card-emoji{font-size:clamp(115px,28vh,290px)!important}
+.restored-cards .flashcard-caption{overflow-y:auto;overflow-x:hidden;align-items:stretch;justify-content:center;gap:4px;padding:3px 8px}
+.restored-cards .flashcard-caption h2{font-size:clamp(29px,4.5vw,65px);line-height:1.05}
+.restored-cards .flashcard-caption>p{font-size:clamp(13px,1.7vw,21px);margin:0;color:#7b6588}
+.restored-cards .animal-detail{width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;margin-top:7px}
+.restored-cards .animal-detail>div{display:flex;flex-direction:column;gap:3px;align-items:center;background:#f8f4e8;border-radius:13px;padding:6px 3px}
+.restored-cards .animal-detail strong{font-size:clamp(11px,1.15vw,24px);color:#6755a4}
+.restored-cards .animal-detail span{font-size:clamp(10px,1.08vw,22px);line-height:1.15;font-weight:800}
+.restored-cards .animal-detail p{grid-column:1/-1;font-size:clamp(12px,1.16vw,24px);margin:4px 0 1px;font-weight:800}
+.restored-cards .animal-detail-simple{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.restored-cards .see-real-film{align-self:center;margin-top:4px;background:#d9f0e1;border:3px solid white;border-radius:16px;padding:8px 15px;font-size:clamp(12px,1.35vw,17px);font-weight:1000;color:#3b7257}
+.restored-cards .flashcard-filter button{padding:7px 13px;white-space:nowrap}
+.restored-cards .flashcard-filter button:disabled{opacity:1}
+
+@media(max-height:470px){
+ .game-shell{gap:4px;padding:0 1px 4px}
+ .mission{height:50px;padding:2px 10px;grid-template-columns:44px minmax(0,1fr) auto auto;column-gap:9px}
+ .mission .buddy-mission{width:40px;height:40px}
+ .mission h2{font-size:17px}.mission p{font-size:11px}
+ .mission>.bubble-btn{min-height:36px;padding:3px 8px}
+ .mission .dots b{width:11px;height:11px}
+ .trace-actions{height:41px;gap:6px}.trace-actions button{min-height:36px;min-width:81px;padding:4px 9px}
+ .trace-actions #traceNext{min-width:119px}.trace-pad{height:calc(100% - 47px)}
+ .flashcard-top{height:35px}.flashcard-filter button{min-height:30px;padding:3px 8px}
+ .flashcard-actions{height:46px}.film-note{display:none}
+ .modes-intro{height:54px}.modes-intro .big-emoji{font-size:36px}.modes-intro p{display:none}
+}
+@media(max-width:850px){
+ #traceHint{display:none}.trace-progress{width:90px}
+ .flashcard-main{grid-template-columns:1.45fr 1fr}
+ .flashcard-caption h2{font-size:clamp(25px,4.3vw,43px)}
+ .flashcard-caption p{font-size:clamp(13px,2vw,20px)}
+ .restored-cards .animal-detail>div{padding:3px 1px}
+}
+@media(max-height:520px){
+ .restored-cards .flashcard-main{gap:7px}
+ .restored-cards .flashcard-caption h2{font-size:clamp(24px,3.3vw,42px)}
+ .restored-cards .flashcard-caption>p{font-size:13px}
+ .restored-cards .animal-detail{margin-top:2px;gap:3px}
+ .restored-cards .animal-detail>div{padding:3px 2px}
+ .restored-cards .animal-detail p{font-size:11px;margin:1px 0}
+ .restored-cards .see-real-film{padding:4px 9px;min-height:31px}
+ .restored-cards .flashcard-filter button{padding:3px 8px}
+}

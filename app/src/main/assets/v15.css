@@ -1,0 +1,62 @@
+/* v1.5 — enhance the child-facing inputs without changing previous layouts. */
+.trace-validated .trace-letter{display:none}
+.trace-validated{background:radial-gradient(circle at 50% 30%,#fffefa,#f7eeff);border-color:#b9d9d0}
+.trace-validated canvas{touch-action:none;cursor:crosshair}
+.trace-demo{position:absolute;right:12px;top:9px;z-index:4;border:2px solid #c3a3d7;background:#fff2d3;border-radius:18px;padding:7px 12px;font-size:clamp(12px,1.3vw,17px);font-weight:900;color:#735990}
+.music-fullscreen .music-surface{touch-action:none;user-select:none;-webkit-user-select:none}
+.music-fullscreen .piano-white.playing{background:linear-gradient(#ffe5af,#ffb95f)}
+.music-fullscreen .piano-black.playing{background:linear-gradient(#aa89d0,#62488b)}
+.music-fullscreen .xylo-bar.playing{filter:brightness(1.18);transform:translateY(3px)}
+.land-world-grid .world-card{border-bottom:8px solid rgba(67,48,97,.12)}
+.mode-card:first-child{border:4px solid #f5b663;box-shadow:0 7px 0 rgba(159,100,35,.18)}
+.land-world-grid.v15-grid.grid-4{grid-template-columns:1.4fr repeat(3,minmax(0,1fr));grid-template-rows:1fr}
+.land-world-grid.v15-grid.grid-5{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr))}
+.land-world-grid.v15-grid.grid-5 .world-card:first-child{grid-column:span 2}
+.land-world-grid.v15-grid .world-card:first-child{border:5px solid #f9bd62;box-shadow:0 7px 0 rgba(188,134,66,.25)}
+.land-world-grid.v15-grid .world-card:nth-child(2){transform:rotate(-.6deg)}
+.land-world-grid.v15-grid .world-card:nth-child(3){transform:rotate(.6deg)}
+.brushing-lesson{width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:clamp(2px,.7vh,9px);text-align:center;padding:4px 12px}
+.brushing-picture{font-size:clamp(38px,8vh,92px);line-height:1.1;animation:brush-bounce 1.8s ease-in-out infinite alternate}
+.brushing-lesson h2{font-size:clamp(17px,2.9vw,31px);line-height:1.1;margin:0;color:#58486e}
+.brushing-lesson p{font-size:clamp(12px,1.7vw,18px);line-height:1.25;max-width:740px;margin:0}
+.brushing-next{min-height:43px;padding:6px 20px}
+.brushing-zones{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;width:90%;min-height:30%}
+.brushing-zone{background:#fff8e6;border:4px dashed #d7c8b5;border-radius:22px;display:flex;justify-content:center;align-items:center;flex-direction:column;gap:3px;touch-action:none;user-select:none}
+.brushing-zone span{font-size:clamp(25px,5.5vh,66px)}
+.brushing-zone strong{font-size:clamp(12px,1.5vw,20px)}
+.brushing-zone small{font-size:clamp(9px,1.1vw,14px)}
+.brushing-zone.active{background:#dff8ed;border-color:#5cc18f;box-shadow:0 0 0 5px #b8eed4}
+.brushing-zone.done{background:#edf5ed;border-style:solid;border-color:#9acfb2}
+.brushing-steps{font-weight:900;color:#7e6aa8}
+@keyframes brush-bounce{from{transform:translateX(-6px) rotate(-5deg)}to{transform:translateX(6px) rotate(5deg)}}
+@media (max-height:420px){.brushing-lesson{gap:2px}.brushing-picture{font-size:40px}.brushing-zones{min-height:31%;gap:6px}.brushing-zone{border-width:2px}.brushing-zone span{font-size:25px}}
+.count-lesson{width:100%;height:100%;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:space-evenly;gap:4px;text-align:center}
+.count-lesson h2{font-size:clamp(18px,2.6vw,30px);line-height:1.08;margin:0}
+.count-math-groups{display:flex;align-items:center;justify-content:center;gap:clamp(10px,2vw,28px);font-size:clamp(32px,5.5vw,64px);width:100%;flex-wrap:wrap}
+.count-math-groups span{background:#fff6e1;padding:8px 18px;border-radius:18px;word-spacing:.3em;max-width:44%}
+.count-stars{font-size:clamp(42px,6vw,86px);letter-spacing:.17em;max-width:95%}
+.count-answer-options{display:flex;gap:clamp(12px,3vw,45px);align-items:center;justify-content:center}
+.count-answer-options button{font-size:clamp(24px,3.8vw,44px);font-weight:900;background:#def0ff;border:4px solid #fff;border-radius:24px;min-width:clamp(68px,9vw,120px);min-height:clamp(55px,10vh,105px);box-shadow:0 5px 0 #b0c6dc}
+.count-landscape{width:90%;flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:space-evenly;border-radius:30px;overflow:hidden}
+.count-basket-scene{background:linear-gradient(#d7f2d3,#fff1cf)}
+.count-pond-scene{background:linear-gradient(#baf0ff,#79c8e6)}
+.count-pieces{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:center;max-width:95%}
+.count-pieces button{background:transparent;border:0;font-size:clamp(28px,5.5vw,66px);min-width:clamp(46px,7.5vw,95px);min-height:48px;transition:transform .12s}
+.count-pieces button.counted{opacity:.28;transform:scale(.7)}
+.count-pond-scene .count-pieces button{animation:fish-bob 2.5s ease-in-out infinite alternate}
+.count-basket{font-size:clamp(15px,2vw,22px);font-weight:900;color:#4f6470}
+@keyframes fish-bob{from{transform:translateY(-6px)}to{transform:translateY(6px)}}
+.sorting-v15{display:flex;flex-direction:column;gap:4px;justify-content:space-between;align-items:center;padding:4px 8px}
+.sorting-v15 .sorting-scene{display:flex;gap:12px;align-items:center;justify-content:center;font-size:clamp(12px,1.6vw,19px);color:#745b9a;font-weight:900}
+.sorting-v15 .sorting-scene span{font-size:clamp(19px,3.5vw,35px)}
+.sorting-v15 .sorting-target{font-size:clamp(35px,7vh,83px);white-space:nowrap;max-width:95%;line-height:1.12;text-align:center}
+.sorting-v15 h2{font-size:clamp(16px,2.1vw,26px);margin:0}
+.sorting-v15 .sorting-options{display:flex;justify-content:center;align-items:stretch;gap:clamp(7px,1.4vw,18px);width:95%;min-height:42%;max-height:55%}
+.sorting-v15 .sorting-choice{min-width:0;flex:1;border:4px solid white;border-radius:22px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;box-shadow:0 5px 0 #bcb2b8;padding:6px 4px}
+.sorting-v15 .sorting-choice-icon{font-size:clamp(27px,5.5vh,58px);line-height:1}
+.sorting-v15 .sorting-choice strong{font-size:clamp(12px,1.6vw,20px);line-height:1.1}
+.sorting-v15 .sort-big .sorting-choice-icon{font-size:clamp(37px,7vh,72px)}
+.sorting-v15 .sort-medium .sorting-choice-icon{font-size:clamp(27px,5.4vh,54px)}
+.sorting-v15 .sort-small .sorting-choice-icon{font-size:clamp(18px,3.3vh,35px)}
+.sorting-v15 .sorting-choice.correct{border-color:#58c389;background:#d8f8de!important}
+.sorting-v15 .sorting-choice.wrong{border-color:#f0b4aa}

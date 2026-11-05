@@ -1,0 +1,324 @@
+{
+  "version": "2.0.0-hybrid",
+  "items": [
+    {
+      "id": "lesson_wild_and_domestic_animals_pilot",
+      "title": "Meet the Animals: Wild and Domestic Friends",
+      "topic": "Animal Kingdom Introduction",
+      "target_age_group": "3-8 years",
+      "duration_seconds": 25.0,
+      "video_filename": "videos/animal_lessons/wild_and_domestic_animals_lesson.mp4",
+      "video_format": "MP4 (H.264 High Profile / AAC)",
+      "resolution": "1280x720 (16:9)",
+      "fps": 30,
+      "thumbnail_filename": "thumbnails/wild_and_domestic_animals_thumb.webp",
+      "narration_audio_filename": "audio/narration/wild_and_domestic_animals_lesson_en.mp3",
+      "subtitles": {
+        "en": "videos/animal_lessons/wild_and_domestic_animals_lesson.srt",
+        "te": "videos/animal_lessons/wild_and_domestic_animals_lesson.te.srt",
+        "hi": "videos/animal_lessons/wild_and_domestic_animals_lesson.hi.srt"
+      },
+      "scenes": [
+        {
+          "scene_index": 1,
+          "time_range": "00:00 - 00:05",
+          "scene_type": "title_introduction",
+          "featured_subject": "Little Wonder World Friends",
+          "visual_focus": "Group landscape featuring elephant, lion, dog, and cat",
+          "narration_en": "Welcome to Little Wonder World! Let's explore our animal friends!"
+        },
+        {
+          "scene_index": 2,
+          "time_range": "00:05 - 00:10",
+          "scene_type": "animal_spotlight",
+          "featured_subject": "Elephant (African Bush Elephant)",
+          "category": "wild",
+          "visual_focus": "Elephant in savanna with smooth zoom and title badge",
+          "narration_en": "Look at the Elephant! It is the largest land animal and has a long trunk."
+        },
+        {
+          "scene_index": 3,
+          "time_range": "00:10 - 00:15",
+          "scene_type": "animal_spotlight",
+          "featured_subject": "Lion (African Lion)",
+          "category": "wild",
+          "visual_focus": "Majestic lion resting on a rock with gentle zoom",
+          "narration_en": "Here is the Lion! Known as the King of the Jungle, lions live in the savanna."
+        },
+        {
+          "scene_index": 4,
+          "time_range": "00:15 - 00:20",
+          "scene_type": "animal_spotlight",
+          "featured_subject": "Dog (Golden Retriever)",
+          "category": "domestic",
+          "visual_focus": "Friendly golden retriever sitting on grass with wagging tail",
+          "narration_en": "Meet the Dog! Dogs are loyal domestic friends that love to play and protect us."
+        },
+        {
+          "scene_index": 5,
+          "time_range": "00:20 - 00:25",
+          "scene_type": "animal_spotlight_and_outro",
+          "featured_subject": "Cat (Tabby Cat)",
+          "category": "domestic",
+          "visual_focus": "Gentle tabby cat sitting on rug with calm expression",
+          "narration_en": "And here is the Cat! Cats are gentle domestic pets with sharp senses."
+        }
+      ]
+    },
+    {
+      "id": "lesson_farm_animals",
+      "title": "Animal Sounds — Farm Animals",
+      "duration_seconds": 15.0,
+      "video_filename": "videos/animal_lessons/farm_animals_lesson.mp4",
+      "video_format": "MP4 (H.264 High Profile Level 3.1 / AAC)",
+      "resolution": "1280x720",
+      "fps": 30,
+      "thumbnail_filename": "thumbnails/farm_animals_thumb.webp",
+      "narration_audio_filename": "audio/narration/farm_animals_lesson_en.mp3",
+      "subtitles": {
+        "en": "videos/animal_lessons/farm_animals_lesson.srt",
+        "te": "videos/animal_lessons/farm_animals_lesson.te.srt",
+        "hi": "videos/animal_lessons/farm_animals_lesson.hi.srt"
+      },
+      "status": "complete_validated"
+    },
+    {
+      "id": "lesson_fruits_colors",
+      "title": "Fruits and Their Colors",
+      "duration_seconds": 15.0,
+      "video_filename": "videos/object_lessons/fruits_and_colors_lesson.mp4",
+      "video_format": "MP4 (H.264 High Profile Level 3.1 / AAC)",
+      "resolution": "1280x720",
+      "fps": 30,
+      "thumbnail_filename": "thumbnails/fruits_and_colors_thumb.webp",
+      "narration_audio_filename": "audio/narration/fruits_and_colors_lesson_en.mp3",
+      "subtitles": {
+        "en": "videos/object_lessons/fruits_and_colors_lesson.srt",
+        "te": "videos/object_lessons/fruits_and_colors_lesson.te.srt",
+        "hi": "videos/object_lessons/fruits_and_colors_lesson.hi.srt"
+      },
+      "status": "complete_validated"
+    },
+    {
+      "id": "lesson_shapes_around_us",
+      "title": "Shapes Around Us",
+      "duration_seconds": 15.0,
+      "video_filename": "videos/object_lessons/shapes_around_us_lesson.mp4",
+      "video_format": "MP4 (H.264 High Profile Level 3.1 / AAC)",
+      "resolution": "1280x720",
+      "fps": 30,
+      "thumbnail_filename": "thumbnails/shapes_around_us_thumb.webp",
+      "narration_audio_filename": "audio/narration/shapes_around_us_lesson_en.mp3",
+      "subtitles": {
+        "en": "videos/object_lessons/shapes_around_us_lesson.srt",
+        "te": "videos/object_lessons/shapes_around_us_lesson.te.srt",
+        "hi": "videos/object_lessons/shapes_around_us_lesson.hi.srt"
+      },
+      "status": "complete_validated"
+    },
+    {
+      "id": "lesson_wild_animals_safari",
+      "title": "Animal Sounds — Wild Animals",
+      "duration_seconds": 15.0,
+      "video_filename": "videos/animal_lessons/wild_animals_safari_lesson.mp4",
+      "video_format": "MP4 (H.264 High Profile Level 3.1 / AAC)",
+      "resolution": "1280x720",
+      "fps": 30,
+      "thumbnail_filename": "thumbnails/wild_animals_safari_thumb.webp",
+      "narration_audio_filename": "audio/narration/wild_animals_safari_lesson_en.mp3",
+      "subtitles": {
+        "en": "videos/animal_lessons/wild_animals_safari_lesson.srt",
+        "te": "videos/animal_lessons/wild_animals_safari_lesson.te.srt",
+        "hi": "videos/animal_lessons/wild_animals_safari_lesson.hi.srt"
+      },
+      "status": "complete_validated"
+    },
+    {
+      "id": "lesson_animals_and_babies",
+      "title": "Animals and Their Babies",
+      "duration_seconds": 15.0,
+      "video_filename": "videos/animal_lessons/animals_and_babies_lesson.mp4",
+      "video_format": "MP4 (H.264 High Profile Level 3.1 / AAC)",
+      "resolution": "1280x720",
+      "fps": 30,
+      "thumbnail_filename": "thumbnails/animals_and_babies_thumb.webp",
+      "narration_audio_filename": "audio/narration/animals_and_babies_lesson_en.mp3",
+      "subtitles": {
+        "en": "videos/animal_lessons/animals_and_babies_lesson.srt",
+        "te": "videos/animal_lessons/animals_and_babies_lesson.te.srt",
+        "hi": "videos/animal_lessons/animals_and_babies_lesson.hi.srt"
+      },
+      "status": "complete_validated"
+    },
+    {
+      "id": "lesson_vegetables_healthy",
+      "title": "Vegetables and Healthy Food",
+      "duration_seconds": 15.0,
+      "video_filename": "videos/object_lessons/vegetables_healthy_food_lesson.mp4",
+      "video_format": "MP4 (H.264 High Profile Level 3.1 / AAC)",
+      "resolution": "1280x720",
+      "fps": 30,
+      "thumbnail_filename": "thumbnails/vegetables_healthy_food_thumb.webp",
+      "narration_audio_filename": "audio/narration/vegetables_healthy_food_lesson_en.mp3",
+      "subtitles": {
+        "en": "videos/object_lessons/vegetables_healthy_food_lesson.srt",
+        "te": "videos/object_lessons/vegetables_healthy_food_lesson.te.srt",
+        "hi": "videos/object_lessons/vegetables_healthy_food_lesson.hi.srt"
+      },
+      "status": "complete_validated"
+    },
+    {
+      "id": "lesson_birds_and_sounds",
+      "title": "Birds and Their Sounds",
+      "duration_seconds": 15.0,
+      "video_filename": "videos/animal_lessons/birds_and_their_sounds_lesson.mp4",
+      "video_format": "MP4 (H.264 High Profile Level 3.1 / AAC)",
+      "resolution": "1280x720",
+      "fps": 30,
+      "thumbnail_filename": "thumbnails/birds_and_their_sounds_thumb.webp",
+      "narration_audio_filename": "audio/narration/birds_and_their_sounds_lesson_en.mp3",
+      "subtitles": {
+        "en": "videos/animal_lessons/birds_and_their_sounds_lesson.srt",
+        "te": "videos/animal_lessons/birds_and_their_sounds_lesson.te.srt",
+        "hi": "videos/animal_lessons/birds_and_their_sounds_lesson.hi.srt"
+      },
+      "status": "complete_validated"
+    },
+    {
+      "id": "lesson_vehicles_transport",
+      "title": "Vehicles and Transportation",
+      "duration_seconds": 15.0,
+      "video_filename": "videos/object_lessons/vehicles_and_transportation_lesson.mp4",
+      "video_format": "MP4 (H.264 High Profile Level 3.1 / AAC)",
+      "resolution": "1280x720",
+      "fps": 30,
+      "thumbnail_filename": "thumbnails/vehicles_and_transportation_thumb.webp",
+      "narration_audio_filename": "audio/narration/vehicles_and_transportation_lesson_en.mp3",
+      "subtitles": {
+        "en": "videos/object_lessons/vehicles_and_transportation_lesson.srt",
+        "te": "videos/object_lessons/vehicles_and_transportation_lesson.te.srt",
+        "hi": "videos/object_lessons/vehicles_and_transportation_lesson.hi.srt"
+      },
+      "status": "complete_validated"
+    },
+    {
+      "id": "lesson_road_safety",
+      "title": "Road Safety for Children",
+      "duration_seconds": 15.0,
+      "video_filename": "videos/good_habits/road_safety_for_children_lesson.mp4",
+      "video_format": "MP4 (H.264 High Profile Level 3.1 / AAC)",
+      "resolution": "1280x720",
+      "fps": 30,
+      "thumbnail_filename": "thumbnails/road_safety_for_children_thumb.webp",
+      "narration_audio_filename": "audio/narration/road_safety_for_children_lesson_en.mp3",
+      "subtitles": {
+        "en": "videos/good_habits/road_safety_for_children_lesson.srt",
+        "te": "videos/good_habits/road_safety_for_children_lesson.te.srt",
+        "hi": "videos/good_habits/road_safety_for_children_lesson.hi.srt"
+      },
+      "status": "complete_validated"
+    },
+    {
+      "id": "lesson_counting_1_to_10",
+      "title": "Counting Objects from 1 to 10",
+      "duration_seconds": 15.0,
+      "video_filename": "videos/numbers/counting_objects_1_to_10_lesson.mp4",
+      "video_format": "MP4 (H.264 High Profile Level 3.1 / AAC)",
+      "resolution": "1280x720",
+      "fps": 30,
+      "thumbnail_filename": "thumbnails/counting_objects_1_to_10_thumb.webp",
+      "narration_audio_filename": "audio/narration/counting_objects_1_to_10_lesson_en.mp3",
+      "subtitles": {
+        "en": "videos/numbers/counting_objects_1_to_10_lesson.srt",
+        "te": "videos/numbers/counting_objects_1_to_10_lesson.te.srt",
+        "hi": "videos/numbers/counting_objects_1_to_10_lesson.hi.srt"
+      },
+      "status": "complete_validated"
+    },
+    {
+      "id": "lesson_good_habits_brushing",
+      "title": "Good Habits — Brushing Teeth",
+      "duration_seconds": 15.0,
+      "video_filename": "videos/good_habits/brushing_teeth_lesson.mp4",
+      "video_format": "MP4 (H.264 High Profile Level 3.1 / AAC)",
+      "resolution": "1280x720",
+      "fps": 30,
+      "thumbnail_filename": "thumbnails/brushing_teeth_thumb.webp",
+      "narration_audio_filename": "audio/narration/brushing_teeth_lesson_en.mp3",
+      "subtitles": {
+        "en": "videos/good_habits/brushing_teeth_lesson.srt",
+        "te": "videos/good_habits/brushing_teeth_lesson.te.srt",
+        "hi": "videos/good_habits/brushing_teeth_lesson.hi.srt"
+      },
+      "status": "complete_validated"
+    },
+    {
+      "id": "lesson_good_habits_washing_hands",
+      "title": "Good Habits — Washing Hands",
+      "duration_seconds": 15.0,
+      "video_filename": "videos/good_habits/washing_hands_lesson.mp4",
+      "video_format": "MP4 (H.264 High Profile Level 3.1 / AAC)",
+      "resolution": "1280x720",
+      "fps": 30,
+      "thumbnail_filename": "thumbnails/washing_hands_thumb.webp",
+      "narration_audio_filename": "audio/narration/washing_hands_lesson_en.mp3",
+      "subtitles": {
+        "en": "videos/good_habits/washing_hands_lesson.srt",
+        "te": "videos/good_habits/washing_hands_lesson.te.srt",
+        "hi": "videos/good_habits/washing_hands_lesson.hi.srt"
+      },
+      "status": "complete_validated"
+    },
+    {
+      "id": "lesson_weather_and_seasons",
+      "title": "Weather and Seasons",
+      "duration_seconds": 15.0,
+      "video_filename": "videos/science/weather_and_seasons_lesson.mp4",
+      "video_format": "MP4 (H.264 High Profile Level 3.1 / AAC)",
+      "resolution": "1280x720",
+      "fps": 30,
+      "thumbnail_filename": "thumbnails/weather_and_seasons_thumb.webp",
+      "narration_audio_filename": "audio/narration/weather_and_seasons_lesson_en.mp3",
+      "subtitles": {
+        "en": "videos/science/weather_and_seasons_lesson.srt",
+        "te": "videos/science/weather_and_seasons_lesson.te.srt",
+        "hi": "videos/science/weather_and_seasons_lesson.hi.srt"
+      },
+      "status": "complete_validated"
+    },
+    {
+      "id": "lesson_day_and_night",
+      "title": "Day and Night",
+      "duration_seconds": 15.0,
+      "video_filename": "videos/science/day_and_night_lesson.mp4",
+      "video_format": "MP4 (H.264 High Profile Level 3.1 / AAC)",
+      "resolution": "1280x720",
+      "fps": 30,
+      "thumbnail_filename": "thumbnails/day_and_night_thumb.webp",
+      "narration_audio_filename": "audio/narration/day_and_night_lesson_en.mp3",
+      "subtitles": {
+        "en": "videos/science/day_and_night_lesson.srt",
+        "te": "videos/science/day_and_night_lesson.te.srt",
+        "hi": "videos/science/day_and_night_lesson.hi.srt"
+      },
+      "status": "complete_validated"
+    },
+    {
+      "id": "lesson_solar_system",
+      "title": "Our Solar System — Introduction",
+      "duration_seconds": 15.0,
+      "video_filename": "videos/science/solar_system_intro_lesson.mp4",
+      "video_format": "MP4 (H.264 High Profile Level 3.1 / AAC)",
+      "resolution": "1280x720",
+      "fps": 30,
+      "thumbnail_filename": "thumbnails/solar_system_intro_thumb.webp",
+      "narration_audio_filename": "audio/narration/solar_system_intro_lesson_en.mp3",
+      "subtitles": {
+        "en": "videos/science/solar_system_intro_lesson.srt",
+        "te": "videos/science/solar_system_intro_lesson.te.srt",
+        "hi": "videos/science/solar_system_intro_lesson.hi.srt"
+      },
+      "status": "complete_validated"
+    }
+  ]
+}

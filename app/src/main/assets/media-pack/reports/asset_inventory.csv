@@ -1,0 +1,22 @@
+Asset ID,Category,File Path,Format,Dimensions / Duration,File Size (KB),Source / Generation Method,Licensing,QA Status
+wild_elephant,animals/wild,animals/wild/elephant.webp,WebP,1024x1024,298.3,Google Gemini AI Synthesis,Royalty-Free Production Asset,PASSED
+wild_lion,animals/wild,animals/wild/lion.webp,WebP,1024x1024,224.9,Google Gemini AI Synthesis,Royalty-Free Production Asset,PASSED
+wild_tiger,animals/wild,animals/wild/tiger.webp,WebP,1024x1024,331.9,Google Gemini AI Synthesis,Royalty-Free Production Asset,PASSED
+domestic_dog,animals/domestic,animals/domestic/dog.webp,WebP,1024x1024,238.8,Google Gemini AI Synthesis,Royalty-Free Production Asset,PASSED
+domestic_cat,animals/domestic,animals/domestic/cat.webp,WebP,1024x1024,148.9,Google Gemini AI Synthesis,Royalty-Free Production Asset,PASSED
+fruit_apple,objects/fruits,objects/fruits/apple.webp,WebP,1024x1024,74.8,Google Gemini AI Synthesis,Royalty-Free Production Asset,PASSED
+fruit_banana,objects/fruits,objects/fruits/banana.webp,WebP,1024x1024,16.5,Google Gemini AI Synthesis,Royalty-Free Production Asset,PASSED
+fruit_mango,objects/fruits,objects/fruits/mango.webp,WebP,1024x1024,38.1,Google Gemini AI Synthesis,Royalty-Free Production Asset,PASSED
+vehicle_bus,objects/vehicles,objects/vehicles/bus.webp,WebP,1024x1024,58.3,Google Gemini AI Synthesis,Royalty-Free Production Asset,PASSED
+vehicle_car,objects/vehicles,objects/vehicles/car.webp,WebP,1024x1024,48.7,Google Gemini AI Synthesis,Royalty-Free Production Asset,PASSED
+shape_circle,objects/shapes,objects/shapes/circle.svg,SVG,Vector,0.12,Mathematical Vector Geometry,Public Domain,PASSED
+shape_square,objects/shapes,objects/shapes/square.svg,SVG,Vector,0.13,Mathematical Vector Geometry,Public Domain,PASSED
+shape_triangle,objects/shapes,objects/shapes/triangle.svg,SVG,Vector,0.12,Mathematical Vector Geometry,Public Domain,PASSED
+shape_star,objects/shapes,objects/shapes/star.svg,SVG,Vector,0.18,Mathematical Vector Geometry,Public Domain,PASSED
+shape_heart,objects/shapes,objects/shapes/heart.svg,SVG,Vector,0.24,Mathematical Vector Geometry,Public Domain,PASSED
+lesson_wild_and_domestic_pilot,videos/animal_lessons,videos/animal_lessons/wild_and_domestic_animals_lesson.mp4,MP4 (H.264/AAC),1280x720 (25.0s),3164.5,AI Assembly & ffmpeg H.264/AAC Pipeline,Royalty-Free Production Asset,PASSED
+thumb_wild_and_domestic_pilot,thumbnails,thumbnails/wild_and_domestic_animals_thumb.webp,WebP,1280x720,247.4,Google Gemini AI Synthesis,Royalty-Free Production Asset,PASSED
+narration_lesson_01_en,audio/narration,audio/narration/wild_and_domestic_animals_lesson_en.mp3,MP3 (128 kbps),25.0s,391.9,Educational Acoustic Sound Synthesis,Royalty-Free Production Asset,PASSED
+subtitle_lesson_01_srt,videos/animal_lessons,videos/animal_lessons/wild_and_domestic_animals_lesson.srt,SubRip Subtitle (.srt),25.0s (English),0.52,Human / Educational Linguistics,Royalty-Free Production Asset,PASSED
+subtitle_lesson_01_te.srt,videos/animal_lessons,videos/animal_lessons/wild_and_domestic_animals_lesson.te.srt,SubRip Subtitle (.srt),25.0s (Telugu),1.09,Human / Educational Linguistics,Royalty-Free Production Asset,PASSED
+subtitle_lesson_01_hi.srt,videos/animal_lessons,videos/animal_lessons/wild_and_domestic_animals_lesson.hi.srt,SubRip Subtitle (.srt),25.0s (Hindi),1.01,Human / Educational Linguistics,Royalty-Free Production Asset,PASSED

@@ -1,0 +1,71 @@
+{
+  "language_code": "en",
+  "language_name": "English",
+  "app_title": "Little Wonder World",
+  "categories": {
+    "domestic_animals": "Domestic Animals",
+    "wild_animals": "Wild Animals",
+    "fruits": "Fruits",
+    "vehicles": "Vehicles",
+    "shapes": "Shapes"
+  },
+  "animals": {
+    "wild_elephant": {
+      "name": "Elephant",
+      "fact_1": "Elephants are the largest living land animals on Earth and have super long trunks!",
+      "fact_2": "An elephant uses its trunk to drink water, pick up food, and say hello.",
+      "activity": "Trunk Wave Game: Wave your arm like a trunk and make a gentle trumpet sound!"
+    },
+    "wild_lion": {
+      "name": "Lion",
+      "fact_1": "Male lions have large, magnificent manes of hair that protect their necks.",
+      "fact_2": "A lion's mighty roar can be heard from up to 8 kilometers away!",
+      "activity": "King's Crown: Practice a proud lion pose and a gentle playful roar!"
+    },
+    "wild_tiger": {
+      "name": "Tiger",
+      "fact_1": "Every tiger has a completely unique pattern of black stripes, just like human fingerprints!",
+      "fact_2": "Tigers love water and are wonderful swimmers who enjoy cooling off in rivers.",
+      "activity": "Tiger Prowl: Walk quietly on tiptoes through imaginary tall grass like a calm tiger!"
+    },
+    "domestic_dog": {
+      "name": "Dog",
+      "fact_1": "Dogs communicate their feelings with their tails; a happy wag means joy!",
+      "fact_2": "A dog's sense of smell is up to 100,000 times stronger than a human's.",
+      "activity": "Fetch & Wag: Play fetch with a toy and give a friendly happy woof!"
+    },
+    "domestic_cat": {
+      "name": "Cat",
+      "fact_1": "Cats make a gentle vibrating sound called a purr when they feel safe and calm.",
+      "fact_2": "Cats use their flexible whiskers to feel the world and check narrow spaces.",
+      "activity": "Whisker Curl: Put fingers near cheeks like whiskers and practice a soothing purr!"
+    }
+  },
+  "objects": {
+    "fruit_apple": {
+      "name": "Apple",
+      "color": "Red",
+      "description": "Crunchy sweet red fruit."
+    },
+    "fruit_banana": {
+      "name": "Banana",
+      "color": "Yellow",
+      "description": "Sweet curved yellow fruit."
+    },
+    "fruit_mango": {
+      "name": "Mango",
+      "color": "Golden Yellow",
+      "description": "Juicy sweet King of Fruits."
+    },
+    "vehicle_bus": {
+      "name": "Bus",
+      "color": "Yellow",
+      "description": "Big friendly passenger bus."
+    },
+    "vehicle_car": {
+      "name": "Car",
+      "color": "Red",
+      "description": "Comfortable family motor car."
+    }
+  }
+}

@@ -1,0 +1,163 @@
+/* v1.5.1 vivid storybook design.
+ * Bright accents mark actions, not entire screens. All text remains legible.
+ * Scoped to .vivid-theme so historical releases are preserved. */
+.vivid-theme{--ink:#20324A;--purple:#1769E0;--cream:#F3FAFF;--sky:#E6F5FF;--mint:#E8F8EC;--yellow:#FFD43B;--shadow:0 5px 0 rgba(32,50,74,.14),0 10px 24px rgba(32,50,74,.07);color:#20324A;background:radial-gradient(circle at 89% 9%,#FFF0D6 0 7%,transparent 24%),linear-gradient(155deg,#F3FAFF,#F1FBFA 55%,#E6F5FF)}
+.vivid-theme:before{opacity:.10;background-image:radial-gradient(#1769E0 .7px,transparent .8px);background-size:26px 26px}
+.vivid-theme button:focus-visible{outline:4px solid #1769E0;outline-offset:3px}
+.vivid-theme .topbar{background:#FFFFFFE8;border-bottom:2px solid #D7EAF5;z-index:3}
+.vivid-theme .brand,.vivid-theme .top-title{color:#20324A;text-shadow:none}
+.vivid-theme .bubble-btn{min-width:48px;min-height:48px;background:#FFFFFF;border:2px solid #D6E8F3;color:#20324A;box-shadow:0 4px 0 #D6E8F3}
+.vivid-theme .back-btn{background:#FFF0D6;border-color:#FFB000}
+.vivid-theme .progress-pill{background:#FFFFFF;color:#20324A;border:2px solid #DDEBF6;box-shadow:none}
+.vivid-theme .small-progress{background:#E6F5FF}
+.vivid-theme .big-primary{background:#FFB000;color:#20324A;box-shadow:0 5px 0 #D58B00;border:2px solid #FFC34C;min-height:52px}
+.vivid-theme .big-primary.purple{background:#1769E0;color:#FFFFFF;box-shadow:0 5px 0 #0E4CA8;border-color:#1769E0}
+.vivid-theme .tiny-cta{background:#1769E0;border:2px solid #1769E0;color:#FFFFFF;box-shadow:0 4px 0 #0E4CA8;min-height:46px}
+.vivid-theme .land-greeting .tiny-cta:last-child{background:#FFB000;color:#20324A;border-color:#FFB000;box-shadow:0 4px 0 #D58B00}
+.vivid-theme .land-home,.vivid-theme .land-detail{gap:9px}
+.vivid-theme .land-greeting,.vivid-theme .land-guide{height:17%;min-height:52px;justify-content:flex-start;background:#FFFFFF;border:3px solid #DCECF5;border-radius:25px;padding:5px 17px;gap:12px}
+.vivid-theme .land-greeting h1,.vivid-theme .land-guide h2{color:#20324A;font-size:clamp(19px,2.8vw,34px);line-height:1.08}
+.vivid-theme .land-greeting p,.vivid-theme .land-guide p{color:#35526B;font-weight:800}
+.vivid-theme .land-greeting .home-buddy{width:clamp(42px,6.5vw,86px);height:90%;min-height:0;flex-shrink:0}
+.vivid-theme .land-greeting .home-buddy svg{max-width:100%;max-height:100%}
+.vivid-theme .land-greeting .tiny-cta{margin-left:auto;white-space:nowrap}
+.vivid-theme .land-greeting .tiny-cta+.tiny-cta{margin-left:0}
+.vivid-theme .land-grid{grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:12px}
+.vivid-theme .land-card{position:relative;min-height:0;overflow:hidden;border:3px solid var(--land-accent);box-shadow:0 5px 0 #20324A23,0 10px 24px #20324A0D;border-radius:26px;color:#20324A;gap:7px;padding:10px;background:var(--land-bg)!important}
+.vivid-theme .land-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:10px;background:var(--land-accent)}
+.vivid-theme .land-card .land-emoji{font-size:clamp(39px,6.5vw,82px);line-height:1.05;filter:drop-shadow(0 4px 1px #FFFFFF)}
+.vivid-theme .land-card .land-copy{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;max-width:100%;font-size:inherit}
+.vivid-theme .land-card .land-copy strong{font-size:clamp(17px,2.25vw,29px);letter-spacing:-.025em;line-height:1.08}
+.vivid-theme .land-card .land-meta{font-weight:900;font-size:clamp(10px,1.22vw,15px);color:#35526B}
+.vivid-theme .land-card .land-copy small{font-size:clamp(11px,1.17vw,15px);color:#35526B;line-height:1.18}
+.vivid-theme .land-card:nth-child(1),.vivid-theme .land-card:nth-child(4){grid-column:span 2;flex-direction:row;text-align:left;gap:clamp(13px,2.4vw,32px)}
+.vivid-theme .land-card:nth-child(1) .land-emoji,.vivid-theme .land-card:nth-child(4) .land-emoji{font-size:clamp(62px,9vw,120px)}
+.vivid-theme .land-card:nth-child(1) .land-copy,.vivid-theme .land-card:nth-child(4) .land-copy{align-items:flex-start}
+.vivid-theme .land-card[data-value="creative"]{--land-accent:#F06A32;--land-bg:#FFF0D6}
+.vivid-theme .land-card[data-value="foundations"]{--land-accent:#1769E0;--land-bg:#E6F5FF}
+.vivid-theme .land-card[data-value="discovery"]{--land-accent:#157F52;--land-bg:#E8F8EC}
+.vivid-theme .land-card[data-value="thinking"]{--land-accent:#7854C8;--land-bg:#F3EAFF}
+.vivid-theme .land-card[data-value="wellbeing"]{--land-accent:#FD4B8B;--land-bg:#FDE5ED}
+.vivid-theme .land-card[data-value="funfair"]{--land-accent:#CC8B00;--land-bg:#FFF4CB}
+.vivid-theme .land-world-grid .world-card{background:#FFFFFF!important;border:3px solid #DCECF5;border-bottom:7px solid #B7DDEC;box-shadow:0 4px 0 #D9E8F1}
+.vivid-theme .land-world-grid .world-card:nth-child(5n+1){background:#E6F5FF!important;border-bottom-color:#1769E0}
+.vivid-theme .land-world-grid .world-card:nth-child(5n+2){background:#FFF0D6!important;border-bottom-color:#F06A32}
+.vivid-theme .land-world-grid .world-card:nth-child(5n+3){background:#E8F8EC!important;border-bottom-color:#157F52}
+.vivid-theme .land-world-grid .world-card:nth-child(5n+4){background:#F3EAFF!important;border-bottom-color:#7854C8}
+.vivid-theme .land-world-grid .world-card:nth-child(5n){background:#FDE5ED!important;border-bottom-color:#FD4B8B}
+.vivid-theme .world-name{color:#20324A}
+.vivid-theme .world-count{color:#35526B;opacity:1}
+.vivid-theme .modes-intro,.vivid-theme .mission{background:#FFFFFF;border:3px solid #DCECF5;color:#20324A;box-shadow:0 4px 0 #D9E8F1}
+.vivid-theme .modes-intro p,.vivid-theme .mission p{color:#35526B;opacity:1}
+.vivid-theme .mode-card{background:#FFFFFF;border:3px solid #D7EAF5;box-shadow:0 4px 0 #D7EAF5;color:#20324A}
+.vivid-theme .mode-card:nth-child(6n+1){background:#E6F5FF;border-bottom-color:#1769E0}
+.vivid-theme .mode-card:nth-child(6n+2){background:#FFF0D6;border-bottom-color:#F06A32}
+.vivid-theme .mode-card:nth-child(6n+3){background:#E8F8EC;border-bottom-color:#157F52}
+.vivid-theme .mode-card:nth-child(6n+4){background:#F3EAFF;border-bottom-color:#7854C8}
+.vivid-theme .mode-card:nth-child(6n+5){background:#FDE5ED;border-bottom-color:#FD4B8B}
+.vivid-theme .mode-card:nth-child(6n){background:#FFF4CB;border-bottom-color:#CC8B00}
+.vivid-theme .playfield{background:#FFFFFF;border:3px solid #DCECF5;box-shadow:0 4px 0 #D9E8F1;color:#20324A}
+.vivid-theme .mission>.bubble-btn{background:#1769E0;color:#FFFFFF;border-color:#1769E0;box-shadow:0 4px 0 #0E4CA8}
+.vivid-theme .choice-card{background:#E6F5FF;border:3px solid #9BCCF2;box-shadow:0 5px 0 #A7CDEA;color:#20324A;min-height:64px}
+.vivid-theme .choice-card:nth-child(2n){background:#FFF0D6;border-color:#FFD280;box-shadow:0 5px 0 #E6C48C}
+.vivid-theme .choice-card:nth-child(3n){background:#E8F8EC;border-color:#A6D9B9;box-shadow:0 5px 0 #B0DCC0}
+.vivid-theme .choice-card.correct{background:#D7F7E4!important;border-color:#157F52!important;outline:3px solid #157F52}
+.vivid-theme .choice-card.wrong{background:#FFF0D6!important;border-color:#F06A32!important;outline:3px solid #F06A32}
+.vivid-theme .feedback{background:#FFFFFF;border:4px solid #FFB000;color:#20324A}
+.vivid-theme .trace-pad{background:#FFFFFF;border:4px dashed #AACBE3}
+.vivid-theme .trace-demo{background:#1769E0;border-color:#1769E0;color:#FFFFFF;min-height:44px}
+.vivid-theme .trace-actions #traceNext:not(:disabled){background:#157F52;color:#FFFFFF;border-color:#157F52}
+.vivid-theme .trace-actions #traceNext:disabled{background:#E5EDF2;color:#536C7C;border-color:#D1DEE6}
+.vivid-theme .trace-progress{background:#DCECF5}
+.vivid-theme .trace-progress span{background:linear-gradient(90deg,#FFB000,#157F52)}
+.vivid-theme .storybook-page{background:#FFF7E3;border-color:#FFFFFF}
+.vivid-theme .trace-actions button,.vivid-theme .paint-tools button{min-height:46px}
+.vivid-theme .music-keys button{min-height:64px;touch-action:none}
+.vivid-theme .parent-card{background:#FFFFFF;color:#20324A}
+@media(max-height:470px){
+ .vivid-theme .land-grid{gap:7px}
+ .vivid-theme .land-card{padding:4px 8px;gap:3px;border-radius:17px}
+ .vivid-theme .land-card .land-emoji{font-size:clamp(30px,4vw,48px)}
+ .vivid-theme .land-card:nth-child(1) .land-emoji,.vivid-theme .land-card:nth-child(4) .land-emoji{font-size:clamp(43px,6vw,68px)}
+ .vivid-theme .land-card .land-copy strong{font-size:clamp(13px,1.65vw,20px)}
+ .vivid-theme .land-card .land-copy small{font-size:clamp(9px,1vw,12px)}
+ .vivid-theme .land-greeting{padding:2px 9px;gap:7px;min-height:45px}
+ .vivid-theme .land-greeting h1{font-size:clamp(15px,2vw,23px)}
+ .vivid-theme .land-greeting p{font-size:clamp(10px,1.2vw,14px)}
+ .vivid-theme .land-greeting .tiny-cta{min-height:38px;padding:4px 8px;font-size:clamp(10px,1.15vw,14px)}
+ .vivid-theme .mission>.bubble-btn{min-height:38px}
+ .vivid-theme .trace-actions button{min-height:38px}
+}
+
+
+/* v1.6 Classroom & Tactile Play Enhancements */
+.vivid-theme{padding:clamp(4px,1vw,10px)}
+.vivid-theme .v16-hub{display:flex;flex-direction:column;gap:8px;height:100%}
+.vivid-theme .two-door-bar{height:auto;min-height:54px;padding:6px 14px;display:flex;align-items:center;gap:10px;flex-wrap:nowrap}
+.vivid-theme .adventure-door-btn{background:linear-gradient(180deg,#157F52,#0F633F);color:#FFFFFF;border:3px solid #A6E4B5;border-radius:999px;padding:8px 18px;font-weight:900;font-size:clamp(13px,1.6vw,20px);box-shadow:0 4px 0 #094229;cursor:pointer;white-space:nowrap;animation:pulseDoor 2.2s infinite ease-in-out}
+@keyframes pulseDoor{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+.vivid-theme .toybox-ribbon{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#FFFFFFE6;border:2px solid #D7EAF5;border-radius:20px;padding:5px 12px;min-height:52px;overflow-x:auto}
+.vivid-theme .toybox-stations{display:flex;align-items:center;gap:7px;flex-shrink:0}
+.vivid-theme .toybox-station{position:relative;display:flex;align-items:center;gap:6px;background:var(--station-bg,#FFF0D6);border:2px solid var(--station-accent,#F06A32);border-radius:16px;padding:5px 11px;color:#20324A;font-weight:800;font-size:clamp(11px,1.25vw,15px);box-shadow:0 3px 0 rgba(32,50,74,.12);cursor:pointer}
+.vivid-theme .toybox-station .station-icon{font-size:clamp(18px,2.2vw,26px)}
+.vivid-theme .toybox-station .pin-dot{font-style:normal;font-size:10px;position:absolute;top:-5px;right:-5px}
+.vivid-theme .toybox-recents{display:flex;align-items:center;gap:6px;margin-left:auto;flex-shrink:0}
+.vivid-theme .shelf-tag{font-size:11px;font-weight:900;color:#1769E0;background:#E6F5FF;padding:4px 8px;border-radius:99px}
+.vivid-theme .recent-badge{display:flex;align-items:center;gap:5px;background:#FFF4CB;border:2px solid #FFB000;border-radius:99px;padding:4px 10px;font-weight:800;font-size:12px;color:#20324A;cursor:pointer}
+.vivid-theme .quick-switch-bar{display:flex;align-items:center;gap:5px;margin-left:auto;margin-right:6px;background:#F3FAFF;padding:3px 6px;border-radius:99px;border:2px solid #D7EAF5}
+.vivid-theme .quick-tab{min-width:36px;min-height:36px;border-radius:99px;border:2px solid transparent;background:#FFFFFF;font-size:18px;padding:2px 7px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.vivid-theme .quick-tab.active{background:#FFF0D6;border-color:#FFB000;transform:scale(1.08);box-shadow:0 2px 0 #D58B00}
+.vivid-theme .pin-top-btn.is-pinned{background:#FFF4CB;border-color:#FFB000}
+/* Engine 1: Drag-and-Drop Sorting */
+.vivid-theme .draggable-token{position:relative;cursor:grab;touch-action:none;user-select:none;display:inline-flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 18px;background:#FFFFFF;border:3px dashed #1769E0;border-radius:24px;box-shadow:0 6px 14px rgba(23,105,224,.12)}
+.vivid-theme .draggable-token.is-dragging{cursor:grabbing;box-shadow:0 14px 28px rgba(32,50,74,.24);border-style:solid;border-color:#FFB000}
+.vivid-theme .drag-me-tag{font-size:12px;font-weight:900;color:#1769E0;background:#E6F5FF;padding:2px 8px;border-radius:99px;margin-top:3px}
+.vivid-theme .drop-basket{position:relative;transition:transform .18s ease,box-shadow .18s ease}
+.vivid-theme .drop-basket .basket-critter{font-size:20px;position:absolute;top:6px;right:8px;opacity:.85}
+.vivid-theme .drop-basket.basket-magnet{transform:scale(1.07);outline:4px solid #157F52;box-shadow:0 8px 20px rgba(21,127,82,.25)}
+/* Engine 2: Wooden Montessori Peg Board */
+.vivid-theme .peg-board{background:linear-gradient(180deg,#F5DEB3,#E6C687);border:4px solid #C49A52;border-radius:22px;padding:10px;box-shadow:inset 0 3px 8px rgba(0,0,0,.12)}
+.vivid-theme .peg-slot{background:#5C4328;color:#FFF8E7;border:3px inset #3E2B17;border-radius:18px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px}
+.vivid-theme .peg-slot:not(.complete) .peg-silhouette{filter:brightness(0) invert(1);opacity:.35;font-size:clamp(28px,4vw,44px)}
+.vivid-theme .peg-slot.complete{background:#FFF8E7;color:#20324A;border:3px solid #157F52}
+.vivid-theme .peg-slot.active-slot{outline:3px dashed #FFD43B}
+.vivid-theme .peg-slot-label{font-size:11px;font-weight:800;opacity:.9}
+.vivid-theme .peg-piece{position:relative;touch-action:none;cursor:grab;background:#FFFDF7;border:3px solid #C49A52;box-shadow:0 5px 0 #A87E3B}
+.vivid-theme .peg-knob{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#FF6B6B,#C83439);border:2px solid #FFFFFF;position:absolute;top:6px;right:6px;box-shadow:0 2px 4px rgba(0,0,0,.25)}
+/* Engine 3: Multi-Tool Scrub & Care Studio */
+.vivid-theme .care-studio-layout{display:grid;grid-template-columns:1fr 1.15fr;gap:14px;align-items:center;width:100%;height:100%}
+.vivid-theme .care-scrub-stage{background:linear-gradient(160deg,#E6F5FF,#FFF0D6);border:3px dashed #1769E0;border-radius:24px;padding:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;cursor:pointer;touch-action:none;user-select:none;min-height:150px}
+.vivid-theme .care-scrub-stage.scrub-complete{border-style:solid;border-color:#157F52;background:#E8F8EC}
+.vivid-theme .care-hero-wrap{position:relative;display:flex;align-items:center;justify-content:center}
+.vivid-theme .care-hero-icon{font-size:clamp(54px,8vw,92px);line-height:1}
+.vivid-theme .care-overlay-badge{background:#FFFFFF;border:2px solid #FFB000;border-radius:99px;padding:4px 10px;font-weight:900;font-size:12px;color:#20324A;box-shadow:0 3px 6px rgba(0,0,0,.08)}
+.vivid-theme .care-scrub-bar{width:85%;height:12px;background:#DCECF5;border-radius:99px;overflow:hidden;border:2px solid #FFFFFF}
+.vivid-theme .care-scrub-bar span{display:block;height:100%;background:linear-gradient(90deg,#FFB000,#157F52);transition:width .12s ease}
+/* Engine 4: Peekaboo Barn & Jungle */
+.vivid-theme .peekaboo-barn{position:relative;overflow:hidden;min-width:150px;min-height:110px;background:#FFF4CB;border:3px solid #FFB000;border-radius:24px;display:inline-flex;align-items:center;justify-content:center;padding:10px 18px;cursor:pointer}
+.vivid-theme .peekaboo-doors{position:absolute;inset:0;background:linear-gradient(135deg,#D9F5E1,#A6E4B5);display:flex;align-items:center;justify-content:center;gap:8px;font-weight:900;color:#157F52;transition:transform .38s cubic-bezier(.2,.9,.3,1)}
+.vivid-theme .peekaboo-barn.peekaboo-open .peekaboo-doors{transform:translateY(76%);background:rgba(255,255,255,.85)}
+/* Engine 5: Sink-or-Float Water Tank Lab */
+.vivid-theme .water-tank-lab{display:grid;grid-template-columns:1fr 1.15fr;gap:14px;align-items:center;width:100%;height:100%}
+.vivid-theme .tank-experiment-col{display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:center}
+.vivid-theme .tank-test-object{display:flex;flex-direction:column;align-items:center;background:#FFF0D6;border:3px solid #FFB000;border-radius:20px;padding:6px 16px;cursor:grab;touch-action:none;z-index:4;transition:transform .45s cubic-bezier(.2,.85,.3,1.2)}
+.vivid-theme .tank-obj-icon{font-size:clamp(34px,5vw,56px);line-height:1.05}
+.vivid-theme .water-tank-lab.is-floating .tank-test-object{transform:translateY(38px);background:#E8F8EC;border-color:#157F52}
+.vivid-theme .water-tank-lab.is-sinking .tank-test-object{transform:translateY(92px);background:#E6F5FF;border-color:#1769E0}
+.vivid-theme .aquarium-tank{position:relative;width:92%;height:125px;background:linear-gradient(180deg,#CBEBFF 0%,#79C4F8 75%,#E6C994 100%);border:4px solid #1769E0;border-top:2px dashed #5DA8F9;border-radius:0 0 22px 22px;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between}
+.vivid-theme .water-surface-waves{height:12px;background:repeating-linear-gradient(90deg,#FFFFFF88 0 18px,transparent 18px 36px)}
+.vivid-theme .water-bubbles{display:flex;justify-content:space-around;color:#FFFFFFCC;font-weight:900;font-size:14px}
+.vivid-theme .tank-floor{font-size:16px;text-align:center;padding-bottom:2px}
+.vivid-theme .tank-discovery-note{font-weight:800;color:#157F52;background:#E8F8EC;padding:6px 12px;border-radius:14px;margin:4px 0}
+/* Engine 6: Phonics CVC Sound-Blending Train */
+.vivid-theme .phonics-train-bar{display:flex;align-items:center;justify-content:center;gap:8px;background:#FFF8E7;border:2px solid #FFB000;border-radius:18px;padding:5px 12px;margin-bottom:6px;flex-wrap:wrap}
+.vivid-theme .train-engine{font-size:24px}
+.vivid-theme .cvc-cars{display:flex;align-items:center;gap:4px}
+.vivid-theme .cvc-car{display:flex;flex-direction:column;align-items:center;background:#FFFFFF;border:2px solid #1769E0;border-radius:12px;padding:3px 10px;min-width:44px;cursor:pointer;box-shadow:0 3px 0 #9BCCF2}
+.vivid-theme .cvc-letter{font-size:18px;font-weight:900;color:#20324A;line-height:1}
+.vivid-theme .cvc-phoneme{font-size:10px;color:#1769E0;font-weight:800}
+.vivid-theme .cvc-blend-btn{background:#157F52;color:#FFFFFF;border:none;border-radius:99px;padding:6px 14px;font-weight:800;font-size:13px;cursor:pointer;box-shadow:0 3px 0 #094229}
+/* Celebration & Parent Gate */
+.vivid-theme .replay-pulse-btn{font-size:clamp(18px,2.2vw,26px);padding:12px 26px;animation:pulseDoor 1.8s infinite ease-in-out}
+.vivid-theme .gate-keypad{flex-wrap:wrap;gap:10px;justify-content:center}
+.vivid-theme .gate-hold-wrap{margin-top:12px}
