@@ -3,7 +3,7 @@ on:
   pull_request:
   workflow_dispatch:
   push:
-    branches: [main, fix/android-webview-compatibility]
+    branches: [main]
     paths:
       - 'app/**'
       - 'releases/**'

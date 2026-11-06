@@ -26,6 +26,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run stage && npm test
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/qa-browser.js
       - name: Locate Android SDK and install platform 35
         shell: bash
         run: |
@@ -58,5 +60,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: LittleWonderWorld-v2.0.1-V4-test-apk
-          path: LittleWonderWorld-v2.0.1.apk
+          path: |
+            LittleWonderWorld-v2.0.1.apk
+            evidence/
           if-no-files-found: error

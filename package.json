@@ -22,7 +22,8 @@
   "devDependencies": {
     "@babel/core": "^7.29.13",
     "@babel/preset-env": "^7.29.7",
-    "acorn": "^8.19.0"
+    "acorn": "^8.19.0",
+    "playwright": "1.51.1"
   },
   "private": true
 }
