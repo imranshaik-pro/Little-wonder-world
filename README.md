@@ -239,3 +239,15 @@ run `bash scripts/run-android-test.sh` with `LWW_ANDROID_SDK` set and an emulato
 connected. This disables emulator Wi-Fi/mobile data and exercises the packaged
 app. CI retains its screenshots and Logcat. A passing render harness is not a
 substitute for physical-device gesture, audible-output or curriculum review.
+
+The asset stage also emits WebView 74 CSS fallbacks: `clamp()` uses its fluid
+preferred value on old engines, `min()` widths gain a `max-width` cap, and
+`inset` expands to four physical sides. Modern declarations remain in place
+for newer WebViews. This fixes oversized SVG buddies and the off-screen media
+panel on WebView 74 without replacing the theme. Clamp bounds are retained on
+modern engines; extreme screen sizes still require physical-device review.
+`node scripts/qa-browser.js` adds offline real-browser tests (install Chromium
+with `npx playwright install chromium`). It explicitly reports H.264 as Not
+Verified when the browser has no decoder, while testing existing WebM playback
+and the visible unsupported-video fallback. Android instrumentation separately
+requires the packaged MP4 to advance.

@@ -14,6 +14,7 @@ let count=0;
 function compile(dir){for(const entry of fs.readdirSync(dir,{withFileTypes:true})){
  const file=path.join(dir,entry.name);
  if(entry.isDirectory())compile(file);
+ else if(file.endsWith('.css'))fs.writeFileSync(file,require('./css-compat')(fs.readFileSync(file,'utf8')));
  else if(file.endsWith('.js')){
   const result=babel.transformFileSync(file,{babelrc:false,configFile:false,sourceType:'script',presets:[['@babel/preset-env',{targets:{chrome:'74'},modules:false,bugfixes:true}]],comments:true});
   fs.writeFileSync(file,result.code+'\n');count++;

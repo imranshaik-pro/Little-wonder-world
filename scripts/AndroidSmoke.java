@@ -26,7 +26,7 @@ public class AndroidSmoke extends Instrumentation {
   if(!"true".equals(result))throw new Exception(name+": "+result);Log.i("LWW_QA","PASS "+name);
  }
  private void screenshot(String name)throws Exception{
-  Thread.sleep(500);Bitmap bitmap=getUiAutomation().takeScreenshot();
+  Thread.sleep(1500);Bitmap bitmap=getUiAutomation().takeScreenshot();
   if(bitmap==null)throw new Exception("Screenshot unavailable");
   File file=new File(getTargetContext().getExternalFilesDir(null),name+".png");
   try(FileOutputStream out=new FileOutputStream(file)){bitmap.compress(Bitmap.CompressFormat.PNG,100,out);}bitmap.recycle();
@@ -41,7 +41,7 @@ public class AndroidSmoke extends Instrumentation {
  }
  private void playing(String name)throws Exception{
   for(int i=0;i<40;i++){if("true".equals(eval("!!window.__qaLastMedia && __qaLastMedia.currentTime>0 && !__qaLastMedia.error"))){Log.i("LWW_QA","PASS "+name);return;}Thread.sleep(250);}
-  throw new Exception(name+" did not advance: "+eval("__qaLastMedia && [__qaLastMedia.readyState,__qaLastMedia.error && __qaLastMedia.error.code]"));
+  throw new Exception(name+" did not advance: "+eval("window.__qaLastMedia && [__qaLastMedia.readyState,__qaLastMedia.error && __qaLastMedia.error.code]"));
  }
  @Override public void onStart(){Bundle result=new Bundle();try{
   Intent launch=getTargetContext().getPackageManager().getLaunchIntentForPackage(getTargetContext().getPackageName());

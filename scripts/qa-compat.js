@@ -7,6 +7,12 @@ function walk(dir){for(const e of fs.readdirSync(dir,{withFileTypes:true})){
  if(p.endsWith('.js')){acorn.parse(fs.readFileSync(p,'utf8'),{ecmaVersion:2019,sourceType:'script'});scripts++;}
 }}}
 walk(assets);
+const cssCompat=require('./css-compat');
+const converted=cssCompat('.a{width:clamp(42px,6.5vw,86px);inset:1px 2px 3px;gap:min(4vw,60px)}');
+assert(converted.includes('width:6.5vw;'));
+assert(converted.includes('left:2px;')&&converted.includes('bottom:3px;'));
+assert(converted.includes('gap:4vw;'));
+
 const html=fs.readFileSync(path.join(assets,'index.html'),'utf8');
 for(const match of html.matchAll(/(?:src|href)="([^"]+)"/g))assert(fs.existsSync(path.join(assets,match[1])),match[1]);
 const sandbox={window:{}};vm.runInNewContext(fs.readFileSync(path.join(assets,'media-catalog.js'),'utf8'),sandbox);
