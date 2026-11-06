@@ -1,8 +1,9 @@
 name: Android Emulator Launch Smoke Test
 on:
+  pull_request:
   workflow_dispatch:
   push:
-    branches: [main]
+    branches: [main, fix/android-webview-compatibility]
     paths:
       - 'app/**'
       - 'releases/**'
@@ -20,13 +21,19 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run stage && npm test
       - name: Install Android SDK
         run: |
           SDK="${ANDROID_HOME:-/usr/local/lib/android/sdk}"
           echo "LWW_ANDROID_SDK=$SDK" >> "$GITHUB_ENV"
           "$SDK/cmdline-tools/latest/bin/sdkmanager" --install 'platforms;android-35' 'build-tools;35.0.0' 'platform-tools'
       - name: Build test APK
-        run: bash build-apk.sh v2.0.0
+        run: bash build-apk.sh v2.0.1 && bash scripts/build-android-test.sh
       - name: Enable KVM acceleration and report virtualization
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
@@ -45,29 +52,13 @@ jobs:
           disable-animations: true
           emulator-boot-timeout: 240
           emulator-options: -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect
-          script: |
-            echo "EMULATOR BOOT COMPLETE: $(date -u)"
-            adb install -r LittleWonderWorld-v2.0.0.apk
-            echo "APK INSTALLED: $(date -u)"
-            adb logcat -c
-            adb shell am start -W -n com.littlewonderworld.app.v15/com.littlewonderworld.app.MainActivity
-            echo "APP START REQUEST SENT: $(date -u)"
-            sleep 8
-            adb logcat -d -b crash -v time > android-crash.log || true
-            adb logcat -d -v time > android-full.log || true
-            adb shell dumpsys activity activities > android-activities.txt
-            adb shell screencap -p /sdcard/lww-launch.png
-            adb pull /sdcard/lww-launch.png lww-launch.png
-            ! grep -E 'FATAL EXCEPTION|Process: com.littlewonderworld.app.v15' android-crash.log
-            adb shell pidof com.littlewonderworld.app.v15
+          script: bash scripts/run-android-test.sh
       - name: Upload emulator diagnostics
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: lww-emulator-launch-diagnostics
           path: |
-            android-crash.log
-            android-full.log
-            android-activities.txt
-            lww-launch.png
+            evidence/
+            LittleWonderWorld-v2.0.1.apk
           if-no-files-found: warn

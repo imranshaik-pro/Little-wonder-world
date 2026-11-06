@@ -1,5 +1,6 @@
 name: Build Little Wonder World V4 APK
 on:
+  pull_request:
   workflow_dispatch:
   push:
     branches: [main]
@@ -19,6 +20,12 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run stage && npm test
       - name: Locate Android SDK and install platform 35
         shell: bash
         run: |
@@ -44,12 +51,12 @@ jobs:
           test -f build-apk.sh
           test -f app/src/main/java/com/littlewonderworld/app/MainActivity.java
           test -f app/src/main/assets/index.html
-          test -f releases/v2.0.0.js
+          test -f releases/v2.0.1.js
       - name: Build and sign test APK
-        run: bash build-apk.sh v2.0.0
+        run: bash build-apk.sh v2.0.1
       - name: Upload test APK
         uses: actions/upload-artifact@v4
         with:
-          name: LittleWonderWorld-v2.0.0-V4-test-apk
-          path: LittleWonderWorld-v2.0.0.apk
+          name: LittleWonderWorld-v2.0.1-V4-test-apk
+          path: LittleWonderWorld-v2.0.1.apk
           if-no-files-found: error

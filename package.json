@@ -1,0 +1,28 @@
+{
+  "name": "little-wonder-world",
+  "version": "2.0.1",
+  "description": "Offline Little Wonder World Android app",
+  "main": "qa-v14.js",
+  "scripts": {
+    "stage": "node scripts/stage-assets.js",
+    "test": "node qa-v15.js && node qa-v15-render.js && node smoke-roadmap.js && node scripts/qa-compat.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imranshaik-pro/Little-wonder-world.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/imranshaik-pro/Little-wonder-world/issues"
+  },
+  "homepage": "https://github.com/imranshaik-pro/Little-wonder-world#readme",
+  "devDependencies": {
+    "@babel/core": "^7.29.13",
+    "@babel/preset-env": "^7.29.7",
+    "acorn": "^8.19.0"
+  },
+  "private": true
+}
