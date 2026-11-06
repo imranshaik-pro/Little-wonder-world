@@ -204,3 +204,50 @@ Everything in this demo runs locally. The manifest requests no permissions and
 does not request Internet access. No personal data is collected or transferred.
 Before production launch, complete applicable Google Play Families, accessibility,
 privacy, content, store listing, and in-app payment reviews.
+
+## WebView compatibility fix v2.0.1
+
+Android 6/API 23 remains the OS minimum. **Android System WebView 74 or newer is
+required**; older factory WebViews on Android 6 must be updated. The supplied
+API 29 diagnostic recorded WebView 74.0.3729.185. Optional chaining and nullish
+coalescing in raw source prevented startup. Node 22 + `npm ci` installs the locked
+Babel toolchain; `npm run stage` builds a clean `build/staged-assets` tree targeting
+Chrome/WebView 74, and `npm test` validates ES2019 syntax, assets, and all 257
+activity renders. `build-apk.sh` always regenerates and checks that tree before
+packaging. Source JS intentionally retains modern syntax; do not package it directly.
+
+The Real World catalog is generated from the existing JSON metadata into a local
+script, avoiding unsupported `fetch(file://...)`. Unsupported `replaceChildren`
+is replaced with `textContent`. Audio stops on panel close, tab changes and app
+pause. The original package, file origin, localStorage keys and IndexedDB schema
+remain unchanged. Unavailable media references are counted by QA and controls
+remain hidden; no placeholder files are added. English TTS needs a locally
+installed voice.
+
+Build: `npm ci && LWW_ANDROID_SDK=/path/to/sdk bash build-apk.sh v2.0.1`.
+The result is version code 21, package `com.littlewonderworld.app.v15`.
+For update-compatible signing, provide `LWW_KEYSTORE`, `LWW_KEY_ALIAS`,
+`LWW_STORE_PASSWORD`, and optionally `LWW_KEY_PASSWORD` through the environment.
+Without those variables a new local test key is used, with a random password
+outside the repository. It cannot update an APK signed by a different key.
+**Do not uninstall an existing app containing wanted progress**: obtain its
+original signing key and rebuild. Android uninstall removes local progress.
+
+Real-device/emulator checks use a separate instrumentation APK, not debug hooks
+in the delivered app. Build it with `bash scripts/build-android-test.sh`, then
+run `bash scripts/run-android-test.sh` with `LWW_ANDROID_SDK` set and an emulator
+connected. This disables emulator Wi-Fi/mobile data and exercises the packaged
+app. CI retains its screenshots and Logcat. A passing render harness is not a
+substitute for physical-device gesture, audible-output or curriculum review.
+
+The asset stage also emits WebView 74 CSS fallbacks: `clamp()` uses its fluid
+preferred value on old engines, `min()` widths gain a `max-width` cap, and
+`inset` expands to four physical sides. Modern declarations remain in place
+for newer WebViews. This fixes oversized SVG buddies and the off-screen media
+panel on WebView 74 without replacing the theme. Clamp bounds are retained on
+modern engines; extreme screen sizes still require physical-device review.
+`node scripts/qa-browser.js` adds offline real-browser tests (install Chromium
+with `npx playwright install chromium`). It explicitly reports H.264 as Not
+Verified when the browser has no decoder, while testing existing WebM playback
+and the visible unsupported-video fallback. Android instrumentation separately
+requires the packaged MP4 to advance.
