@@ -6,6 +6,7 @@ mkdir -p evidence
 "$ADB" install --no-incremental -r build/android-test/qa.apk
 "$ADB" shell svc wifi disable
 "$ADB" shell svc data disable
+"$ADB" shell settings put secure immersive_mode_confirmations confirmed
 "$ADB" logcat -c
 "$ADB" shell am instrument -w com.littlewonderworld.qa/com.littlewonderworld.qa.AndroidSmoke | tee evidence/instrumentation.txt
 "$ADB" logcat -d -v time > evidence/android-full.log
