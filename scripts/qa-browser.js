@@ -16,11 +16,17 @@ const worlds=await page.evaluate(()=>visibleWorldIds.map(id=>({id,modes:worlds[i
 for(const world of worlds)for(const mode of world.modes){await page.evaluate(([id,m])=>beginMode(id,m),[world.id,mode]);assert((await page.locator('#app').innerText()).length>0);}
 await page.evaluate(()=>{state.screen='home';render()});
 await page.locator('#lww-media-entry').tap();assert(await page.locator('.lww-card').count()>0);
-await page.evaluate(()=>{window.__qaPlay=HTMLMediaElement.prototype.play;HTMLMediaElement.prototype.play=function(){window.__qaMedia=this;return __qaPlay.apply(this,arguments)}});
+await page.evaluate(()=>{window.__qaPlay=HTMLMediaElement.prototype.play;HTMLMediaElement.prototype.play=function(){if(this.src.indexOf('media-pack/')!==-1)if(this.src.indexOf('media-pack/')!==-1)window.__qaMedia=this;return __qaPlay.apply(this,arguments)}});
 await page.locator('#lww-media-panel [data-action=sound]').first().tap();
 await page.waitForFunction(()=>window.__qaMedia && __qaMedia.currentTime>0);
 await page.evaluate(()=>wonderPause());assert(await page.evaluate(()=>__qaMedia.paused));
-await page.locator('#lww-media-panel [data-action=movement]').first().tap();await page.waitForFunction(()=>window.__qaMedia instanceof HTMLVideoElement && __qaMedia.currentTime>0);
+const h264=await page.evaluate(()=>!!document.createElement('video').canPlayType('video/mp4; codecs="avc1.64001f"'));
+await page.locator('#lww-media-panel [data-action=movement]').first().tap();
+if(h264)await page.waitForFunction(()=>window.__qaMedia instanceof HTMLVideoElement && __qaMedia.currentTime>0);
+else {await page.waitForFunction(()=>window.__qaMedia && __qaMedia.error);assert((await page.locator('#lww-player').innerText()).includes('cannot play'));}
+// WebM is an additional existing offline format, independent of H.264 support.
+await page.evaluate(()=>{const v=document.querySelector('#lww-player video');v.src='animal-videos/cow.webm';window.__qaWebm=v;v.play()});
+await page.waitForFunction(()=>__qaWebm.currentTime>0);
 await page.screenshot({path:'evidence/browser-video.png'});
 await page.evaluate(()=>wonderBack());assert(await page.locator('#lww-media-panel').evaluate(e=>e.hidden));
 await page.evaluate(()=>beginMode('tracing','capitals'));
@@ -30,6 +36,6 @@ assert(await page.evaluate(()=>state.traceReady),'Tracing gesture completes');
 await page.evaluate(()=>{persist('lww_qa_browser',{value:21});state.screen='home';render()});
 await page.reload();assert.equal(await page.evaluate(()=>restore('lww_qa_browser',{}).value),21);assert.equal(await page.locator('.land-card').count(),6);
 assert.deepEqual(errors,[]);assert.deepEqual(requests,[]);
-const report={status:'PASS',browser:browser.version(),offline:true,worlds:27,activities:257,lands:6,animalAudio:true,animalVideo:true,tracing:true,reloadPersistence:true,errors,networkRequests:requests};
+const report={status:'PASS',browser:browser.version(),offline:true,worlds:27,activities:257,lands:6,animalAudio:true,animalVideo:h264?true:"Not Verified: browser has no H.264 decoder",webmVideo:true,tracing:true,reloadPersistence:true,errors,networkRequests:requests};
 fs.writeFileSync('evidence/browser-results.json',JSON.stringify(report,null,2));console.log(report);await browser.close();
 })().catch(e=>{console.error(e);process.exit(1)});

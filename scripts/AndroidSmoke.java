@@ -69,7 +69,7 @@ public class AndroidSmoke extends Instrumentation {
   eval("state.screen='home';render();document.querySelector('#lww-media-entry').click()");
   check("offline animal catalog", "document.querySelectorAll('#lww-media-panel .lww-card').length>0");
   screenshot("animals");
-  eval("window.__qaOriginalPlay=HTMLMediaElement.prototype.play;HTMLMediaElement.prototype.play=function(){window.__qaLastMedia=this;return __qaOriginalPlay.apply(this,arguments)}");
+  eval("window.__qaOriginalPlay=HTMLMediaElement.prototype.play;HTMLMediaElement.prototype.play=function(){if(this.src.indexOf('media-pack/')!==-1)window.__qaLastMedia=this;return __qaOriginalPlay.apply(this,arguments)}");
   tap("#lww-media-panel [data-action=sound]");playing("offline animal audio");
   eval("window.wonderPause()");check("audio pauses on background hook","__qaLastMedia.paused");
   tap("#lww-media-panel [data-action=movement]");playing("offline animal video");screenshot("video");
