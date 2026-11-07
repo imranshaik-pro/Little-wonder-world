@@ -69,7 +69,8 @@ public class AndroidSmoke extends Instrumentation {
    }
   }
   check("no runtime errors", "__qaErrors.length===0");
-  eval("state.screen='home';render();document.querySelector('#lww-media-entry').click()");
+  eval("state.screen='home';render()");
+  eval("document.querySelector('#lww-media-entry').click()");
   check("offline animal catalog", "document.querySelectorAll('#lww-media-panel .lww-card').length>0");
   screenshot("animals");
   eval("window.__qaOriginalPlay=HTMLMediaElement.prototype.play;HTMLMediaElement.prototype.play=function(){if(this.src.indexOf('media-pack/')!==-1)window.__qaLastMedia=this;return __qaOriginalPlay.apply(this,arguments)}");
