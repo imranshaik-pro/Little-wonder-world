@@ -26,7 +26,10 @@ public class AndroidSmoke extends Instrumentation {
   if(!"true".equals(result))throw new Exception(name+": "+result);Log.i("LWW_QA","PASS "+name);
  }
  private void screenshot(String name)throws Exception{
-  Thread.sleep(1500);Bitmap bitmap=getUiAutomation().takeScreenshot();
+  final CountDownLatch painted=new CountDownLatch(1);
+  runOnMainSync(()->web.postVisualStateCallback(1,new WebView.VisualStateCallback(){@Override public void onComplete(long id){web.invalidate();painted.countDown();}}));
+  if(!painted.await(20,TimeUnit.SECONDS))throw new Exception("WebView paint timed out");
+  Thread.sleep(2500);Bitmap bitmap=getUiAutomation().takeScreenshot();
   if(bitmap==null)throw new Exception("Screenshot unavailable");
   File file=new File(getTargetContext().getExternalFilesDir(null),name+".png");
   try(FileOutputStream out=new FileOutputStream(file)){bitmap.compress(Bitmap.CompressFormat.PNG,100,out);}bitmap.recycle();

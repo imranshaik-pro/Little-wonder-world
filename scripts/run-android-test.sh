@@ -16,8 +16,13 @@ mkdir -p evidence
 "$ADB" shell dumpsys activity activities > evidence/activities.txt
 grep -q 'PASS COMPLETE' evidence/android-full.log
 ! grep -E 'Uncaught (SyntaxError|ReferenceError|TypeError)|FATAL EXCEPTION' evidence/android-full.log
+"$ADB" shell am start -W -n com.littlewonderworld.app.v15/com.littlewonderworld.app.MainActivity > evidence/before-background.txt
+sleep 3
+"$ADB" shell pidof com.littlewonderworld.app.v15 > evidence/pid-before-background.txt
 "$ADB" shell input keyevent KEYCODE_HOME
 "$ADB" shell am start -W -n com.littlewonderworld.app.v15/com.littlewonderworld.app.MainActivity > evidence/resume.txt
+"$ADB" shell pidof com.littlewonderworld.app.v15 > evidence/pid-after-resume.txt
+cmp evidence/pid-before-background.txt evidence/pid-after-resume.txt
 "$ADB" shell am force-stop com.littlewonderworld.app.v15
 "$ADB" shell am start -W -n com.littlewonderworld.app.v15/com.littlewonderworld.app.MainActivity > evidence/relaunch.txt
 "$ADB" shell am instrument -w -e verify true com.littlewonderworld.qa/com.littlewonderworld.qa.AndroidSmoke | tee evidence/relaunch-verification.txt
