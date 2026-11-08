@@ -67,7 +67,7 @@ const worlds = {
   ["fruits","Fruit Pop","🍓"],["food","Food Pop","🍔"],["vehicles","Vehicle Pop","🚒"]]}
 };
 /* Preserve the original six learning games and extend them in every release. */
-const release=window.__LWW_RELEASE__||{id:"v1.0",worlds:["sorting","animals","memory","tracing","coloring","balloon",...Object.keys(WonderContent.worlds)],landed:true};
+const release=window.__LWW_RELEASE__||{id:"v1.0",worlds:["sorting","animals","memory","tracing","coloring","balloon",...Object.keys(WonderContent.worlds)],landed:true,path:true,progress:0};
 const expandedRelease=["v1.2","v1.3","v1.4","v1.4.1","v1.4.2","v1.5"].includes(release.id);
 const familyRelease=["v1.3","v1.4","v1.4.1","v1.4.2","v1.5"].includes(release.id);
 const restoredRelease=["v1.4.1","v1.4.2","v1.5"].includes(release.id);
@@ -246,7 +246,8 @@ const memoryDecks={
 const settingsDefault={voice:true,fx:true,music:true,slow:true,reduced:false,goal:4};
 let settings={...settingsDefault,...restore("lww2_settings",{})};
 let profile=restore("lww2_profile",null);
-let stats=restore("lww2_stats",{total:0,byWorld:{},byMode:{},daily:{}});
+// Initialize stats with pathProgress for learning path
+let stats=restore("lww2_stats",{total:0,byWorld:{},byMode:{},daily:{},pathProgress:0});
 let familyPeople=restore("lww3_family",[]);
 if(!Array.isArray(familyPeople))familyPeople=[];
 WonderDB.get("lww3_family",val=>{if(Array.isArray(val)&&val.length&&!familyPeople.length){familyPeople=val;}});
@@ -473,6 +474,20 @@ function speak(text){
  if("speechSynthesis" in window){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(msg);u.lang="en-US";u.rate=.96;u.pitch=1.02;speechSynthesis.speak(u);}catch(e){}}
 }
 function stopVoice(){try{window.WonderNative?.stopSpeech?.();}catch(e){}try{speechSynthesis?.cancel?.();}catch(e){}}
+
+// Helper for path progress access in switch cases
+function getPathProgress(){return stats.pathProgress||0;}
+
+function awaitPathStep(step){
+ // Check if this is a quiz step that needs validation
+ if(step.quiz===true && typeof WonderEngines!=='undefined'){
+  // Start the quiz mode
+  speak("Let's play the " + step.biome + " quiz!");
+  return true;
+ }
+ return true;
+}
+
 /* Phone-lock / app-switch safety: every audio source and silent video stops.
  * Android calls these explicitly; visibility/pagehide are fallback paths. */
 function suspendWonderMedia(){
@@ -518,6 +533,7 @@ function header(){
  (state.screen==="game"||home?'<button class="buddy-top-button" data-action="guideSpeak" aria-label="Ask '+guides[guideId].name+' for help">'+guideArt()+'</button>':'')+
  (state.screen==="game"&&release.id==="v1.5"?'<button class="bubble-btn pin-top-btn '+(pinnedGames.includes(state.world+":"+state.mode)?"is-pinned":"")+'" data-action="togglePin" data-value="'+state.world+':'+state.mode+'" aria-label="Pin to Toy Box">'+(pinnedGames.includes(state.world+":"+state.mode)?"📌":"⭐")+'</button>':'')+
  '<button class="bubble-btn" data-action="voice" aria-label="Toggle voice"><span class="emoji">'+(settings.voice?"🔊":"🔇")+'</span></button>'+
+ (home?'<button class="bubble-btn ticket-badge" data-action="shop" aria-label="Shop - Tickets: '+(stats.tickets||0)+' 🎫">🛍️ <span class="ticket-count">'+ (stats.tickets||0) +'</span></button>':'')+
  (home?'<button class="bubble-btn" data-action="parentGate" aria-label="Parent Corner">👨‍👩‍👧</button>':'')+'</div></div>';
 }
 function dots(n,total){
@@ -527,7 +543,7 @@ function dots(n,total){
 function render(){
  clearTimeout(roundTimer);
  const className="screen"+(settings.reduced?" reduced-motion":"")+(release.id==="v1.5"&&release.code>=18?" vivid-theme":"");
- const screens={onboarding:renderOnboarding,home:renderHome,land:renderLand,modes:renderModes,game:renderGame,complete:renderComplete,parentGate:renderGate,parent:renderParent};
+ const screens={onboarding:renderOnboarding,home:renderHome,shop:renderShop,land:renderLand,modes:renderModes,game:renderGame,complete:renderComplete,parentGate:renderGate,parent:renderParent};
  $("#app").innerHTML='<div class="'+className+'">'+header()+'<main class="content">'+(screens[state.screen]||renderHome)()+'</main></div>';
  if(state.screen==="game"&&state.world==="tracing")setupTrace();
  if(state.screen==="game"&&state.world==="coloring"&&state.mode==="sketch")setupSketch();
@@ -561,6 +577,20 @@ function renderHome(){
   }).join('');
   const title=vivid?'Welcome, little explorer!':guides[guideId].name+' says hello!';
   const subtitle=vivid?'Tap Start Adventure or pick a favorite toy below 🌟':'Pick a magical learning land ✨';
+  // Learning Path card - shows current progress and next step
+  const pathProgress=stats.pathProgress||0;
+  const nextStep=typeof WonderPath!=='undefined'?WonderPath.getNextStep(stats||{pathProgress:0}):null;
+  const biomeName=nextStep?.biome||"My Learning Path";
+  const biomeEmoji=nextStep?.icon||"📖";
+  const pathCard=release.path!==false?
+   '<button class="path-card" style="background:#E6F5FF;color:#20324A;border:2px solid #BFE5FF" data-action="pathJump" aria-label="My Learning Path">'+
+    '<span class="path-icon">'+biomeEmoji+'</span>'+
+    '<div class="path-content"><strong>📖 My Learning Path</strong>'+
+    '<span class="path-subtitle">'+biomeName+'</span>'+
+    '<span class="path-progress">'+pathProgress+' steps completed</span></div>'+
+    '<button class="path-btn" data-action="pathNext" aria-label="Continue My Learning Path">▶ Continue My Path</button>' +
+   '</button>':
+   '';
   if(vivid){
    const trayKeys=[...new Set([...pinnedGames,...recentGames])].slice(0,4);
    const stationButtons=toyBoxStations.map(s=>
@@ -582,19 +612,59 @@ function renderHome(){
      '<button class="tiny-cta" data-action="guideSpeak">🔊 Hear buddy</button>'+
      '<button class="tiny-cta" data-action="surprise">🎲 Surprise!</button>'+
     '</div>'+
+    '<section class="learning-path-section" aria-label="My Learning Path">'+pathCard+'</section>'+
     '<section class="toybox-ribbon" aria-label="Visual Toy Box and Favorites">'+
      '<div class="toybox-stations">'+stationButtons+'</div>'+
      '<div class="toybox-recents"><span class="shelf-tag">⭐ My Shelf</span>'+recentBadges+'</div>'+
     '</section>'+
     '<section class="land-grid">'+cards+'</section></div>';
   }
-  return '<div class="land-home"><div class="land-greeting"><span class="home-buddy">'+guideArt()+'</span><div><h1>'+title+'</h1><p>'+subtitle+'</p></div><button class="tiny-cta" data-action="guideSpeak">🔊 '+(vivid?'Hear my buddy':'Ask my buddy')+'</button><button class="tiny-cta" data-action="surprise">🎲 '+(vivid?'Surprise play!':'Surprise!')+'</button></div><section class="land-grid">'+cards+'</section></div>';
+  return '<div class="land-home">'+pathCard+
+   '<div class="land-greeting"><span class="home-buddy">'+guideArt()+'</span><div><h1>'+title+'</h1><p>'+subtitle+'</p></div><button class="tiny-cta" data-action="guideSpeak">🔊 '+(vivid?'Hear my buddy':'Ask my buddy')+'</button><button class="tiny-cta" data-action="surprise">🎲 '+(vivid?'Surprise play!':'Surprise!')+'</button></div><section class="land-grid">'+cards+'</section></div>';
  }
  const cards=visibleWorldIds.map(id=>{const w=worlds[id];return '<button class="world-card" style="background:'+w.color+'" data-action="world" data-value="'+id+'">'+
  '<span class="world-icon">'+w.icon+'</span><span class="world-name">'+w.name+'</span><span class="world-count">'+w.modes.length+' adventures ✦</span></button>';}).join("");
  return '<div class="home-wrap"><section class="side-story"><div class="mascot">'+state.avatar+'</div><h2>Hi, explorer!</h2><p>Pick a world to discover today.</p>'+
  '<button class="tiny-cta" data-action="surprise">🎲 Surprise me!</button></section><section class="world-grid">'+cards+'</section></div>';
 }
+function renderShop(){
+ const tickets=stats.tickets||0;
+ const purchases=stats.purchases||[];
+ const equipped=stats.equipped||{};
+ const categories=[
+  {id:"avatar",name:"Avatar Customization",icon:"👤",items:WonderShop.catalog.avatar},
+  {id:"aquarium",name:"Aquarium Decor",icon:"🐠",items:WonderShop.catalog.aquarium},
+  {id:"room",name:"Room Decor",icon:"🏠",items:WonderShop.catalog.room}
+ ];
+
+ let html='<div class="shop-screen"><header class="shop-header">'+
+  '<div class="ticket-display">🎫 <span class="ticket-amount">'+tickets+'</span> <small>Tickets Earned</small></div>'+
+  '<h1>Wonder Shop</h1><p>Trade your stars for fun surprises! Earnt by playing, never for real money.</p></header>'+
+  '<div class="shop-content">';
+
+ categories.forEach(cat=>{
+  html+='<section class="shop-category"><h2>'+cat.icon+' '+cat.name+'</h2><div class="shop-grid">';
+  cat.items.forEach(item=>{
+   const isBought=purchases.includes(item.id);
+   const isEquipped=equipped[cat.id]===item.id;
+   const canAfford=tickets>=item.cost;
+
+   html+='<div class="shop-item '+(isBought?'purchased':'')+' '+(isEquipped?'equipped':'')+'">'+
+    '<div class="item-icon">'+item.icon+'</div>'+
+    '<h3>'+item.name+'</h3>'+
+    '<div class="item-cost">'+(isBought?'Unlocked':'🎫 '+item.cost)+'</div>'+
+    (isBought?
+     '<button class="shop-btn '+(isEquipped?'is-equipped':'')+'" data-action="equipItem" data-cat="'+cat.id+'" data-id="'+item.id+'">'+(isEquipped?'Equipped':'Equip')+'</button>':
+     '<button class="shop-btn buy" '+(canAfford?'':'disabled')+' data-action="buyItem" data-cat="'+cat.id+'" data-id="'+item.id+'" data-cost="'+item.cost+'">Buy Item</button>')+
+    '</div>';
+  });
+  html+='</div></section>';
+ });
+
+ html+='</div><footer class="shop-footer"><button class="big-primary" data-action="home">Back to Playroom</button></footer></div>';
+ return html;
+}
+
 function renderLand(){
  const land=WonderContent.lands.find(l=>l.id===state.land);
  const ids=visibleWorldIds.filter(id=>worlds[id].land===state.land);
@@ -1185,6 +1255,17 @@ function finishGame(){
  const key=w+"."+m;stats.byMode[key]=(stats.byMode[key]||0)+1;
  const day=new Date().toISOString().slice(0,10);
  stats.daily[day]=(stats.daily[day]||0)+1;
+ // Ticket economy: tickets are earned only by playing. No purchases, no ads.
+ let earned=5; // base: 5 tickets per completed game
+ const modeKey=w+"."+m;
+ const modeAcc=stats.byModeAccuracy&&stats.byModeAccuracy[modeKey];
+ const acc=modeAcc?(modeAcc.correct/Math.max(1,modeAcc.attempts)):(stats.attempts?(stats.correct||0)/stats.attempts:0);
+ if(acc>=0.8)earned+=2; // accuracy bonus: +2 when accuracy is 80% or higher
+ if(stats.ticketsEarnedMode){
+  if(!stats.ticketsEarnedMode.includes(modeKey)){earned+=1;stats.ticketsEarnedMode.push(modeKey);} // first completion bonus
+ }else{stats.ticketsEarnedMode=[modeKey];earned+=1;}
+ stats.tickets=(stats.tickets||0)+earned;
+ state.lastTicketEarned=earned;
  persist("lww2_stats",stats);
  state.screen="complete";state.locked=false;soundFX("win");render();
  setTimeout(()=>speak("Fantastic! You did it! You are a star!"),200);
@@ -1200,13 +1281,28 @@ function recordAttempt(correct){
 }
 function renderComplete(){
  const mIcon=currentMode()?.[2]||worlds[state.world]?.icon||"🌟";
+ // Display path progress if WonderPath is available
+ const pathProgress=stats.pathProgress||0;
+ const totalSteps=typeof WonderPath!=='undefined'?WonderPath.getTotalSteps():0;
+ const progressInfo=totalSteps>0?'<div class="path-progress-display">Step '+pathProgress+' of '+totalSteps+' in your learning path</div>':'';
+ const tickets=stats.tickets||0;
+ const earned=state.lastTicketEarned;
+ const ticketInfo=earned?
+  '<div class="ticket-earned-banner"><span class="ticket-icon">🎫</span> <strong>+'+earned+' tickets!</strong> <span class="ticket-total">Total: '+tickets+'</span></div>':
+  '';
+ const ticketBalance='<div class="ticket-balance"><span class="ticket-icon">🎫</span> <span class="ticket-count">'+tickets+'</span></div>';
  return '<section class="complete-wrap"><div class="complete-mascot">'+state.avatar+'🎉</div>'+
- '<div class="complete-card"><h1>Hooray, Superstar!</h1><div class="stars">⭐ 🌟 ⭐</div>'+
+ '<div class="complete-card">'+
+ '<h1>Hooray, Superstar!</h1>'+
+ '<div class="stars">⭐ 🌟 ⭐</div>'+
  '<p>You finished <strong>'+esc(modeTitle())+'</strong>!</p>'+
+ ticketInfo+
  '<div class="complete-actions">'+
  '<button class="big-primary replay-pulse-btn" data-action="again"><span class="emoji">'+mIcon+'</span> Play Again! ↻</button>'+
  '<button class="big-primary purple" data-action="nextMode">Next adventure →</button>'+
- '<button class="bubble-btn home-return-btn" data-action="home" aria-label="Return Home">🏡 Home</button></div></div></section>';
+ '<button class="bubble-btn home-return-btn" data-action="home" aria-label="Return Home">🏡 Home</button></div>'+
+ progressInfo+
+ '</div></section>';
 }
 const numWords={8:"Eight",9:"Nine",10:"Ten",11:"Eleven",12:"Twelve",13:"Thirteen",14:"Fourteen",15:"Fifteen",16:"Sixteen",17:"Seventeen",18:"Eighteen",19:"Nineteen",20:"Twenty",21:"Twenty-one",22:"Twenty-two",23:"Twenty-three",24:"Twenty-four",25:"Twenty-five",26:"Twenty-six"};
 function makeGate(){
@@ -1277,6 +1373,17 @@ function beginMode(world,mode){
  recentGames=[rKey,...recentGames.filter(k=>k!==rKey)].slice(0,4);
  persist("lww2_recent",recentGames);
  state.memory=null;state.paint={};state.paintUndo=[];state.color=palettes[0];state.traceLength=0;state.traceReady=false;
+
+ // Path gating: Check if this mode is gated by the learning path
+ if(typeof WonderPath!=='undefined'&& WonderPath.isGated(world,mode,stats)){
+  const nextStep=WonderPath.getNextStep(stats);
+  if(nextStep&&(nextStep.world!==world||nextStep.mode!==mode)){
+   toast("Continue your learning path first!");
+   state.screen="home";render();
+   return;
+  }
+ }
+
  if(world==="family"){
   state.familyIndex=0;state.familyQuestion=null;state.goal=mode==="familyquiz"?5:0;
   state.question={voice:"Let's meet the people in your family!"};render();return;
@@ -1621,6 +1728,70 @@ document.addEventListener("click",event=>{
   break;
  }
  case "changeAge":state.screen="onboarding";render();break;
+ case "pathNext":{
+  if(typeof WonderPath==='undefined'){toast("Path not loaded");break;}
+  const next=WonderPath.getNextStep(stats);
+  if(!next){toast("Path complete! Explore other worlds");break;}
+  const result=awaitPathStep(next);
+  if(result){beginMode(next.world,next.mode);speak("Let's start "+next.biome+"!");}
+  break;
+ }
+ case "pathJump":{
+  if(typeof WonderPath==='undefined'){toast("Path not loaded");break;}
+  const stepIndex=Number(value)||0;
+  const targetStep=stepIndex>=0&&stepIndex<WonderPath.getTotalSteps()? WonderPath.learningPath[stepIndex]:null;
+  if(!targetStep){toast("Invalid path step");break;}
+  // Check if this step is unlocked (either first step or previous step completed)
+  const currentProgress=getPathProgress();
+  if(stepIndex>0&&stepIndex>currentProgress){
+   toast("Continue the path from where you left off!");
+   break;
+  }
+  beginMode(targetStep.world,targetStep.mode);
+  speak("Welcome to "+targetStep.biome+"!");
+  break;
+ }
+ case "shop":{
+  state.screen="shop";
+  render();
+  break;
+ }
+ case "buyItem":{
+  const cat=el.dataset.cat;
+  const id=el.dataset.id;
+  const cost=Number(el.dataset.cost);
+  if(!WonderShop)break;
+  const item=WonderShop.getItem(cat,id);
+  if(!item)break;
+  if((stats.tickets||0)<cost){toast("Not enough tickets! Keep playing to earn more 🎫");soundFX("oops");break;}
+  if((stats.purchases||[]).includes(item.id)){toast("Already unlocked!");break;}
+  stats.tickets-=cost;
+  stats.purchases=(stats.purchases||[]);
+  stats.purchases.push(item.id);
+  stats.equipped=stats.equipped||{};
+  stats.equipped[cat]=item.id; // auto-equip on purchase
+  persist("lww2_stats",stats);
+  render();
+  soundFX("win");
+  toast("Purchased "+item.name+"! 🎉");
+  speak("You got a new "+item.name+"!");
+  break;
+ }
+ case "equipItem":{
+  const cat=el.dataset.cat;
+  const id=el.dataset.id;
+  if(!WonderShop)break;
+  const item=WonderShop.getItem(cat,id);
+  if(!item)break;
+  stats.equipped=stats.equipped||{};
+  stats.equipped[cat]=item.id;
+  persist("lww2_stats",stats);
+  render();
+  soundFX("good");
+  toast(item.name+" equipped!");
+  speak(item.name+" is now equipped!");
+  break;
+ }
  case "resetConfirm":
   if(window.confirm("Reset all learning progress on this device?")){
    stats={total:0,byWorld:{},byMode:{},daily:{},attempts:0,correct:0,byModeAccuracy:{}};persist("lww2_stats",stats);render();
@@ -1628,4 +1799,13 @@ document.addEventListener("click",event=>{
  }
 });
 document.addEventListener("contextmenu",event=>event.preventDefault());
+
+// Dynamically load path.js if available (for the learning path feature)
+if(typeof window.WonderPath==='undefined'){
+ try{
+  const script=document.createElement("script");
+  script.src="path.js";
+  document.head.appendChild(script);
+ }catch(e){}
+}
 render();
