@@ -16,7 +16,8 @@ case "$VERSION" in
   v1.5) VERSION_CODE=17 ;;
   v1.5.1) VERSION_CODE=18 ;;
   v2.0.0) VERSION_CODE=20 ;;
-  *) echo "Use: bash build-apk.sh {v0.3|v0.5|v0.8|v1.0|v1.1|v1.2|v1.3|v1.4|v1.4.1|v1.4.2|v1.5|v1.5.1|v2.0.0}" >&2; exit 2 ;;
+  v2.0.1) VERSION_CODE=21 ;;
+  *) echo "Use: bash build-apk.sh {v0.3|v0.5|v0.8|v1.0|v1.1|v1.2|v1.3|v1.4|v1.4.1|v1.4.2|v1.5|v1.5.1|v2.0.0|v2.0.1}" >&2; exit 2 ;;
 esac
 SDK_DIR="${LWW_ANDROID_SDK:-/tmp/lww-v2-tools/sdk}"
 BUILD="$PROJECT_DIR/build"
@@ -41,13 +42,14 @@ else
   echo "JDK 17 is required: install it and put javac and jar on PATH." >&2
   exit 1
 fi
-mkdir -p "$BUILD/classes" "$BUILD/dex" "$BUILD/staged-assets"
-if [ "$VERSION" = "v1.5" ] || [ "$VERSION" = "v1.5.1" ] || [ "$VERSION" = "v2.0.0" ]; then
+rm -rf "$BUILD/classes" "$BUILD/dex"
+mkdir -p "$BUILD/classes" "$BUILD/dex"
+node "$PROJECT_DIR/scripts/stage-assets.js" "$VERSION"
+if [ "$VERSION" = "v1.5" ] || [ "$VERSION" = "v1.5.1" ] || [ "$VERSION" = "v2.0.0" ] || [ "$VERSION" = "v2.0.1" ]; then
   cp "$SRC/AndroidManifest-v15.xml" "$BUILD/AndroidManifest.xml"
   MANIFEST="$BUILD/AndroidManifest.xml"
 fi
-cp -R "$SRC/assets/." "$BUILD/staged-assets/"
-cp "$PROJECT_DIR/releases/$VERSION.js" "$BUILD/staged-assets/release.js"
+node "$PROJECT_DIR/scripts/qa-compat.js"
 "${JAVAC[@]}" -source 8 -target 8 -cp "$PLATFORM" -d "$BUILD/classes" "$SRC/java/com/littlewonderworld/app/MainActivity.java"
 "${JAR[@]}" cf "$BUILD/classes.jar" -C "$BUILD/classes" .
 "$TOOLS/d8" --min-api 23 --lib "$PLATFORM" --output "$BUILD/dex" "$BUILD/classes.jar"
@@ -56,14 +58,30 @@ cp "$PROJECT_DIR/releases/$VERSION.js" "$BUILD/staged-assets/release.js"
 cd "$BUILD/dex"
 zip -q -j "$BUILD/unsigned.apk" classes.dex
 "$TOOLS/zipalign" -f 4 "$BUILD/unsigned.apk" "$BUILD/aligned.apk"
-if [ "$VERSION" = "v1.5" ] || [ "$VERSION" = "v1.5.1" ] || [ "$VERSION" = "v2.0.0" ]; then DEFAULT_KEYSTORE=/tmp/lww-v15-test.jks; else DEFAULT_KEYSTORE=/tmp/lww-v11-test.jks; fi
-KEYSTORE="${LWW_KEYSTORE:-$DEFAULT_KEYSTORE}"
-if [ ! -f "$KEYSTORE" ]; then
-  keytool -genkeypair -alias lww-v11-test -keystore "$KEYSTORE" -storepass wondertest123 -keypass wondertest123 \
-    -dname "CN=Little Wonder World v1.1 Test,O=Little Wonder World,C=IN" -keyalg RSA -keysize 2048 -validity 3650 -noprompt
+# External signing credentials are supplied only through the environment.
+if [ -n "${LWW_KEYSTORE:-}" ]; then
+  : "${LWW_STORE_PASSWORD:?Set LWW_STORE_PASSWORD for the existing signing key}"
+  : "${LWW_KEY_ALIAS:?Set LWW_KEY_ALIAS for the existing signing key}"
+  KEYSTORE="$LWW_KEYSTORE"
+  export LWW_KEY_PASSWORD="${LWW_KEY_PASSWORD:-$LWW_STORE_PASSWORD}"
+else
+  KEYSTORE="${TMPDIR:-/tmp}/lww-compat-test.jks"
+  PASSWORD_FILE="$KEYSTORE.password"
+  if [ ! -f "$KEYSTORE" ]; then
+    umask 077
+    openssl rand -hex 24 > "$PASSWORD_FILE"
+    export LWW_STORE_PASSWORD="$(cat "$PASSWORD_FILE")"
+    keytool -genkeypair -alias lww-test -keystore "$KEYSTORE" -storepass:env LWW_STORE_PASSWORD -keypass:env LWW_STORE_PASSWORD \
+      -dname "CN=Little Wonder World Compatibility Test,O=LWW,C=IN" -keyalg RSA -keysize 2048 -validity 3650 -noprompt
+  fi
+  export LWW_STORE_PASSWORD="$(cat "$PASSWORD_FILE")"
+  export LWW_KEY_PASSWORD="$LWW_STORE_PASSWORD"
+  LWW_KEY_ALIAS=lww-test
+  echo "TEST signing key: updates require this same certificate."
 fi
-"$TOOLS/apksigner" sign --ks "$KEYSTORE" --ks-key-alias lww-v11-test \
-  --ks-pass pass:wondertest123 --key-pass pass:wondertest123 \
+export LWW_STORE_PASSWORD LWW_KEY_PASSWORD
+"$TOOLS/apksigner" sign --ks "$KEYSTORE" --ks-key-alias "$LWW_KEY_ALIAS" \
+  --ks-pass env:LWW_STORE_PASSWORD --key-pass env:LWW_KEY_PASSWORD \
   --out "$PROJECT_DIR/LittleWonderWorld-$VERSION.apk" "$BUILD/aligned.apk"
 "$TOOLS/apksigner" verify --verbose "$PROJECT_DIR/LittleWonderWorld-$VERSION.apk"
 "$TOOLS/aapt" dump badging "$PROJECT_DIR/LittleWonderWorld-$VERSION.apk" | head -12

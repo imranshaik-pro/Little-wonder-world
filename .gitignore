@@ -1,0 +1,9 @@
+node_modules/
+build/
+*.apk
+*.jks
+*.keystore
+evidence/
+
+*.idsig
+*.password
