@@ -14,7 +14,7 @@ function loadProfiles() {
 }
 function saveProfiles(profiles) { try { localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles)); } catch(e) {} }
 function getCurrentChild(id) { const p = loadProfiles(); if (!id) return p[0]||null; return p.find(x=>x.id===id)||p[0]||null; }
-function getChildStats(id) { try { const stored = localStorage.getItem("lww2_stats_"+id); if (stored) return JSON.parse(stored); } catch(e) {} return {total:0,byWorld:{},byMode:{},daily:{},pathProgress:0,attempts:0,correct:0}; }
+function getChildStats(id) { try { const stored = localStorage.getItem("lww2_stats_"+id); if (stored) return JSON.parse(stored); } catch(e) {} return {total:0,byWorld:{},byMode:{},daily:{},pathProgress:0,tickets:0,ticketsEarnedMode:[],purchases:[],equipped:{},attempts:0,correct:0}; }
 function saveChildStats(id, stats) { try { localStorage.setItem("lww2_stats_"+id, JSON.stringify(stats)); } catch(e) {} }
 function getChildSettings(id) { try { const stored = localStorage.getItem("lww2_settings_"+id); if (stored) return JSON.parse(stored); } catch(e) {} return {}; }
 function saveChildSettings(id, settings) { try { localStorage.setItem("lww2_settings_"+id, JSON.stringify(settings)); } catch(e) {} }

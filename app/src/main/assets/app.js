@@ -1296,6 +1296,10 @@ function finishGame(){
   if(!stats.ticketsEarnedMode.includes(modeKey)){earned+=1;stats.ticketsEarnedMode.push(modeKey);} // first completion bonus
  }else{stats.ticketsEarnedMode=[modeKey];earned+=1;}
  stats.tickets=(stats.tickets||0)+earned;
+ // Award path progress if in learning path
+ if(typeof WonderPath!=="undefined"){
+  WonderPath.awardPathProgress(stats,w,m);
+ }
  state.lastTicketEarned=earned;
  persist("lww2_stats",stats);
  state.screen="complete";state.locked=false;soundFX("win");render();
@@ -1909,7 +1913,7 @@ document.addEventListener("click",event=>{
  }
  case "resetConfirm":
   if(window.confirm("Reset all learning progress on this device?")){
-   stats={total:0,byWorld:{},byMode:{},daily:{},attempts:0,correct:0,byModeAccuracy:{}};persist("lww2_stats",stats);render();
+   stats={total:0,byWorld:{},byMode:{},daily:{},pathProgress:0,tickets:0,ticketsEarnedMode:[],purchases:[],equipped:{},attempts:0,correct:0,byModeAccuracy:{}};persist("lww2_stats",stats);render();
   }break;
  }
 });
