@@ -244,10 +244,36 @@ const memoryDecks={
  toys:["🪀","🧸","🪁","⚽","🛝","🪇","🧩","🎲"]
 };
 const settingsDefault={voice:true,fx:true,music:true,slow:true,reduced:false,goal:4};
-let settings={...settingsDefault,...restore("lww2_settings",{})};
-let profile=restore("lww2_profile",null);
-// Initialize stats with pathProgress for learning path
-let stats=restore("lww2_stats",{total:0,byWorld:{},byMode:{},daily:{},pathProgress:0});
+// Multi-child profile support
+let profiles=[],currentChildId=null,editChildId=null;
+// Migration: check for old single profile and convert to array
+const oldProfile=restore("lww2_profile",null);
+let loadedProfiles=restore("lww2_profiles",null);
+if(!Array.isArray(loadedProfiles)){
+ if(oldProfile&&typeof oldProfile==="object"){
+  loadedProfiles=[{id:"child_1",name:"My Explorer",age:oldProfile.age||"4-5",avatar:oldProfile.avatar||"🐻",color:"#FFB000"}];
+ }else{
+  loadedProfiles=[];
+ }
+ if(Array.isArray(loadedProfiles)){try{localStorage.setItem("lww2_profiles",JSON.stringify(loadedProfiles));}catch(e){}}
+}
+profiles=loadedProfiles;
+// Load per-child settings and stats
+let stats={total:0,byWorld:{},byMode:{},daily:{},pathProgress:0},settings={...settingsDefault};
+if(profiles.length){
+ currentChildId=profiles[0].id;
+ const childSettings=restore("lww2_settings_"+currentChildId,{});
+ settings={...settingsDefault,...childSettings};
+ const childStats=restore("lww2_stats_"+currentChildId,{total:0,byWorld:{},byMode:{},daily:{},pathProgress:0});
+ stats=childStats;
+}
+// Helper: get current child profile
+function getCurrentChild(id){if(!id) return profiles[0]||null;return profiles.find(p=>p.id===id)||profiles[0]||null;}
+// Helper: get per-child progress (for Agent D - learning path)
+function getChildProgress(childId){const st=restore("lww2_stats_"+childId,{total:0,byWorld:{},byMode:{},daily:{}});return{total:st.total||0,byWorld:st.byWorld||{},byMode:st.byMode||{},attempts:st.attempts||0,correct:st.correct||0};}
+// Export for other modules
+window.getCurrentChild=getCurrentChild;
+window.getChildProgress=getChildProgress;
 let familyPeople=restore("lww3_family",[]);
 if(!Array.isArray(familyPeople))familyPeople=[];
 WonderDB.get("lww3_family",val=>{if(Array.isArray(val)&&val.length&&!familyPeople.length){familyPeople=val;}});
@@ -271,8 +297,9 @@ function nextGuidedAdventure(){
  return list[step];
 }
 let pendingFamilyPhoto=null;
-let state={screen:profile?"home":"onboarding",age:profile?.age||"4-5",avatar:profile?.avatar||"🐻",world:null,mode:null,
- round:0,goal:5,question:null,options:[],memory:null,traceLength:0,traceDeck:[],paint:{},paintUndo:[],color:palettes[0],feedback:"",locked:false};
+let curChild=getCurrentChild();
+let state={screen:profiles.length?"home":"onboarding",currentChildId:curChild?.id||null,name:curChild?.name||"My Explorer",age:curChild?.age||"4-5",avatar:curChild?.avatar||"🐻",color:curChild?.color||"#FFB000",world:null,mode:null,
+ round:0,goal:5,question:null,options:[],memory:null,traceLength:0,traceDeck:[],paint:{},paintUndo:[],color:palettes[0],feedback:"",locked:false,editChildId:null};
 const sketchColors=["#e94352","#ff8c40","#ffe16a","#69bf68","#26bad1","#3d7ddd","#8056bf","#e772b3","#b27c59","#212d40","#888f9d","#ffffff"];
 const sketchSizes=[3,7,13,24,39];
 let sketch={color:sketchColors[0],size:13,tool:"pen",snapshot:null,history:[],strokes:0};
@@ -533,6 +560,7 @@ function header(){
  (state.screen==="game"||home?'<button class="buddy-top-button" data-action="guideSpeak" aria-label="Ask '+guides[guideId].name+' for help">'+guideArt()+'</button>':'')+
  (state.screen==="game"&&release.id==="v1.5"?'<button class="bubble-btn pin-top-btn '+(pinnedGames.includes(state.world+":"+state.mode)?"is-pinned":"")+'" data-action="togglePin" data-value="'+state.world+':'+state.mode+'" aria-label="Pin to Toy Box">'+(pinnedGames.includes(state.world+":"+state.mode)?"📌":"⭐")+'</button>':'')+
  '<button class="bubble-btn" data-action="voice" aria-label="Toggle voice"><span class="emoji">'+(settings.voice?"🔊":"🔇")+'</span></button>'+
+ (home?'<button class="bubble-btn profile-badge-btn" data-action="childPicker" aria-label="Switch child">'+esc(getCurrentChild()?.avatar||"🐻")+'</button>':'')+
  (home?'<button class="bubble-btn ticket-badge" data-action="shop" aria-label="Shop - Tickets: '+(stats.tickets||0)+' 🎫">🛍️ <span class="ticket-count">'+ (stats.tickets||0) +'</span></button>':'')+
  (home?'<button class="bubble-btn" data-action="parentGate" aria-label="Parent Corner">👨‍👩‍👧</button>':'')+'</div></div>';
 }
@@ -622,9 +650,12 @@ function renderHome(){
   return '<div class="land-home">'+pathCard+
    '<div class="land-greeting"><span class="home-buddy">'+guideArt()+'</span><div><h1>'+title+'</h1><p>'+subtitle+'</p></div><button class="tiny-cta" data-action="guideSpeak">🔊 '+(vivid?'Hear my buddy':'Ask my buddy')+'</button><button class="tiny-cta" data-action="surprise">🎲 '+(vivid?'Surprise play!':'Surprise!')+'</button></div><section class="land-grid">'+cards+'</section></div>';
  }
+ // Child profile badge
+ const curChild=getCurrentChild();
+ const profileBadge='<button class="profile-badge" data-action="childPicker" aria-label="Child profile: '+esc(curChild?.name||"My Explorer")+'"><span class="child-avatar">'+esc(curChild?.avatar||"🐻")+'</span><span class="child-name">'+esc(curChild?.name||"My Explorer")+'</span></button>';
  const cards=visibleWorldIds.map(id=>{const w=worlds[id];return '<button class="world-card" style="background:'+w.color+'" data-action="world" data-value="'+id+'">'+
  '<span class="world-icon">'+w.icon+'</span><span class="world-name">'+w.name+'</span><span class="world-count">'+w.modes.length+' adventures ✦</span></button>';}).join("");
- return '<div class="home-wrap"><section class="side-story"><div class="mascot">'+state.avatar+'</div><h2>Hi, explorer!</h2><p>Pick a world to discover today.</p>'+
+ return '<div class="home-wrap">'+profileBadge+'<section class="side-story"><div class="mascot">'+state.avatar+'</div><h2>Hi, '+esc(curChild?.name||"explorer")+'!</h2><p>Pick a world to discover today.</p>'+
  '<button class="tiny-cta" data-action="surprise">🎲 Surprise me!</button></section><section class="world-grid">'+cards+'</section></div>';
 }
 function renderShop(){
@@ -1674,9 +1705,25 @@ document.addEventListener("click",event=>{
  case "guideSpeak":speak(guideHint());break;
  case "age":state.age=value;render();break;
  case "avatar":state.avatar=value;render();break;
- case "enter":
-  profile={age:state.age,avatar:state.avatar};persist("lww2_profile",profile);
-  state.screen="home";render();speak("Welcome to Little Wonder World. Pick a game!");break;
+ case "enter":{
+  const currentChild=getCurrentChild();
+  if(!state.currentChildId||profiles.length===0){
+   const newChild = addChild(state.name||"My Explorer", state.age||"4-5", state.avatar||"🐻", state.color||"#FFB000");
+   if(newChild){state.currentChildId=newChild.id;profiles=loadProfiles();}
+  }else if(state.editChildId===state.currentChildId){
+   updateChild(state.currentChildId,{age:state.age,avatar:state.avatar,name:state.name||currentChild.name,color:state.color||currentChild.color});
+  }
+  if(state.currentChildId){
+   const childStats=getChildStats(state.currentChildId);
+   if(!childStats.total){const freshStats={total:0,byWorld:{},byMode:{},daily:{},pathProgress:0,attempts:0,correct:0};saveChildStats(state.currentChildId,freshStats);stats=freshStats;}
+   else stats=childStats;
+   const childSettings=getChildSettings(state.currentChildId);
+   settings={...settingsDefault,...childSettings};
+   curChild=getCurrentChild();
+  }
+  state.screen="home";state.editChildId=null;render();speak("Welcome to Little Wonder World. Pick a game!");
+  break;
+ }
  case "land":state.land=value;state.screen="land";render();speak("Pick a world to explore!");break;
  case "world":state.world=value;state.modePage=0;state.screen="modes";render();speak("Choose an adventure!");break;
  case "modePrev":state.modePage=Math.max(0,(state.modePage||0)-1);render();break;
@@ -1727,7 +1774,19 @@ document.addEventListener("click",event=>{
   if(Object.prototype.hasOwnProperty.call(settings,key)){settings[key]=v;persist("lww2_settings",settings);render();}
   break;
  }
- case "changeAge":state.screen="onboarding";render();break;
+ case "changeAge":{
+  const curChild=getCurrentChild();
+  if(!curChild){toast("No child profile to edit");break;}
+  state.name=curChild.name||"";
+  state.age=curChild.age||"4-5";
+  state.avatar=curChild.avatar||"🐻";
+  state.color=curChild.color||"#FFB000";
+  state.editChildId=state.currentChildId;
+  state.screen="onboarding";
+  speak("Let's update your profile!");
+  render();
+  break;
+ }
  case "pathNext":{
   if(typeof WonderPath==='undefined'){toast("Path not loaded");break;}
   const next=WonderPath.getNextStep(stats);
@@ -1754,6 +1813,62 @@ document.addEventListener("click",event=>{
  case "shop":{
   state.screen="shop";
   render();
+  break;
+ }
+ case "childPicker":{
+  if(state.screen!=="home"){toast("Not available here");break;}
+  if(profiles.length===0){state.screen="onboarding";render();break;}
+  const pickerHtml='<div class="child-picker-modal" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center;z-index:1000"><div class="picker-content" style="background:#fff;padding:20px;border-radius:12px;max-width:90%;text-align:center"><button class="tiny-cta" data-action="childPickerClose" style="position:absolute;top:10px;right:10px">✕</button><h2>Switch Child</h2><div class="child-list">'+profiles.map(p=>'<button class="bubble-btn" style="display:block;margin:5px 0" data-action="selectChild" data-value="'+p.id+'"><span style="font-size:1.5em">'+p.avatar+'</span> <span>'+esc(p.name||"Child")+'</span></button>').join('')+'</div><button class="tiny-cta" data-action="showAddChild">＋ Add child (max 3)</button></div></div>';
+  $("#app").insertAdjacentHTML("beforeend",pickerHtml);
+  break;
+ }
+ case "childPickerClose":{
+  const modal=$(".child-picker-modal");
+  if(modal)modal.remove();
+  break;
+ }
+ case "selectChild":{
+  const selectedId=value;
+  const idx=profiles.findIndex(p=>p.id===selectedId);
+  if(idx>=0){
+   state.currentChildId=selectedId;currentChildId=selectedId;curChild=getCurrentChild();
+   state.name=curChild?.name||"My Explorer";state.age=curChild?.age||"4-5";state.avatar=curChild?.avatar||"🐻";state.color=curChild?.color||"#FFB000";
+   const childSettings=getChildSettings(selectedId);
+   settings={...settingsDefault,...childSettings};
+   const childStats=getChildStats(selectedId);
+   stats=childStats;
+   state.screen="home";state.editChildId=null;
+   const modal=$(".child-picker-modal");if(modal)modal.remove();
+   toast("Switched to "+(curChild?.name||"child"));
+   render();
+  }
+  break;
+ }
+ case "showAddChild":{
+  const modal=$(".child-picker-modal");
+  if(modal){
+   modal.innerHTML='<div class="picker-content" style="background:#fff;padding:20px;border-radius:12px;max-width:90%;text-align:center"><button class="tiny-cta" data-action="childPickerClose" style="position:absolute;top:10px;right:10px">✕</button><h2>Add New Child</h2><p>Name:</p><input type="text" id="newChildName" maxlength="20" placeholder="e.g. Maya"/><p>Age:</p><div class="choice-row">'+["2-3","4-5","5-6"].map(a=>'<button class="pick '+(a===state.age?"selected":"")+'" data-action="age" data-value="'+a+'">'+a+'</button>').join('')+'</div><p>Avatar:</p><div class="choice-row">'+["🐻","🐰","🦁","🐼","🐨","🐶","🐱","🐭","🐹","🐺","🦊"].map(a=>'<button class="pick '+(state.avatar===a?"selected":"")+'" data-action="avatar" data-value="'+a+'">'+a+'</button>').join('')+'</div><p>Color:</p><div class="choice-row">'+["#FFB000","#FF6B6B","#4ECDC4","#95E1D3","#FCE38E","#F38BA8","#7C3AED"].map(c=>'<button class="pick '+(state.color===c?"selected":"")+'" style="background:'+c+'" data-action="color" data-value="'+c+'"></button>').join('')+'</div><button class="big-primary" data-action="addItem">Create Child ✅</button></div>';
+   $("#app").prepend(modal);
+  }
+  break;
+ }
+ case "addItem":{
+  const name=($("#newChildName")?.value||"").trim().slice(0,20)||"My Explorer";
+  const age=state.age||"4-5";
+  const avatar=state.avatar||"🐻";
+  const color=state.color||"#FFB000";
+  const newChild = addChild(name,age,avatar,color);
+  if(newChild){
+   state.currentChildId=newChild.id;currentChildId=newChild.id;curChild=newChild;profiles=loadProfiles();
+   const childStats={total:0,byWorld:{},byMode:{},daily:{},pathProgress:0,attempts:0,correct:0};
+   saveChildStats(newChild.id,childStats);
+   saveChildSettings(newChild.id,{});
+   settings={...settingsDefault,...getChildSettings(newChild.id)};stats=childStats;
+   const modal=$(".child-picker-modal");if(modal)modal.remove();
+   state.screen="home";state.editChildId=null;
+   toast("Welcome, "+name+"!");
+   render();
+  }else{toast("Maximum 3 children allowed");}
   break;
  }
  case "buyItem":{

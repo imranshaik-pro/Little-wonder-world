@@ -12,6 +12,15 @@ const lands=[
  {id:"funfair",name:"Adventure Funfair",icon:"🎡",color:"#fff0be",hint:"Playful learning adventures"}
 ];
 const worlds={
+ // Immersive Play Zones (free exploration worlds)
+ pettown:{name:"Pettown",short:"Pettown",icon:"🐾",land:"wellbeing",color:"#ffe5da",modes:[
+  ["pet_vet","Pet Vet","🐶","pretend"],["pet_bath","Bath Time","🛁","pretend"],["pet_feed","Feed Pets","🍽️","pretend"],["pet_play","Playtime","🎾","pretend"]]},
+ safari:{name:"Safari",short:"Safari",icon:"🦁",land:"discovery",color:"#d4f0e0",modes:[
+  ["safari_animals","Safari Animals","🦓","animals"],["safari_sounds","Animal Sounds","👂","animals"],["safari_tracks","Track Prints","🐾","animals"],["safari_habitat","Animal Homes","🏡","animals"]]},
+ hamster:{name:"Hamster Maze",short:"Maze",icon:"🐹",land:"thinking",color:"#e1dafc",modes:[
+  ["maze_collect","Collect Seeds","🌱","tap"],["maze_nest","Build Nest","🏠","tap"],["maze_escape","Escape Maze","🧩","tap"]]},
+ aquarium:{name:"Aquarium",short:"Aquarium",icon:"🐠",land:"creative",color:"#c9eff8",modes:[
+  ["fish_collect","Collect Fish","🐠","tap"],["coral_grow","Grow Coral","🌸","tap"],["treasure_hunt","Treasure Hunt","💎","tap"]]},
  alphabet:{name:"Alphabet & Phonics",short:"Phonics",icon:"🔤",land:"foundations",color:"#e0e9ff",modes:[
   ["letterhunt","Letter Hunt","🔠","quiz"],["firstsound","First Sounds","🍎","quiz"],["lowercase","Little Letters","🔡","quiz"],
   ["rhyme","Rhyme Time","🎶","quiz"],["missing","Missing ABC","❓","sequence"],["lettertrain","Letter Train","🚂","sequence"],
